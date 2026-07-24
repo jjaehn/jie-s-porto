@@ -52,6 +52,30 @@ function HexagonTile({ skill, isSelected, onClick, onMouseEnter }) {
   );
 }
 
+function createHoneycombRows(items) {
+  const total = items.length;
+  if (total === 0) return [];
+
+  const rows = [];
+  let currentIndex = 0;
+  let rowCapacity = 2; // Starts with 2 items at the top of pyramid
+
+  while (currentIndex < total) {
+    const remaining = total - currentIndex;
+    let take = Math.min(rowCapacity, remaining);
+
+    if (remaining - take === 1 && take > 2) {
+      take -= 1;
+    }
+
+    rows.push(items.slice(currentIndex, currentIndex + take));
+    currentIndex += take;
+    rowCapacity += 1;
+  }
+
+  return rows;
+}
+
 export default function Skills() {
   const allSkills = [
     { name: "Artificial Intelligence", category: "AI Tools", level: "Expert", desc: "Building intelligent agents, decision frameworks, and autonomous reasoning systems.", icon: "🤖" },
@@ -81,6 +105,8 @@ export default function Skills() {
   const filteredSkills = activeCategory === "All" 
     ? allSkills 
     : allSkills.filter(s => s.category === activeCategory);
+
+  const honeycombRows = createHoneycombRows(filteredSkills);
 
   const sectionStyle = {
     position: 'relative',
@@ -212,20 +238,24 @@ export default function Skills() {
         </div>
 
         <div style={layoutGrid} className="skills-layout">
-          {/* Honeycomb Container (Fits 100% width without horizontal scrollbar) */}
+          {/* Interlocking Honeycomb Pyramid Container (Fits 100% width without horizontal scrollbar) */}
           <div className="horizontal-honeycomb-wrapper">
-            {filteredSkills.map(skill => {
-              const isSelected = selectedSkill?.name === skill.name;
-              return (
-                <HexagonTile
-                  key={skill.name}
-                  skill={skill}
-                  isSelected={isSelected}
-                  onClick={() => setSelectedSkill(skill)}
-                  onMouseEnter={() => setSelectedSkill(skill)}
-                />
-              );
-            })}
+            {honeycombRows.map((rowItems, rowIndex) => (
+              <div key={rowIndex} className="honeycomb-row">
+                {rowItems.map(skill => {
+                  const isSelected = selectedSkill?.name === skill.name;
+                  return (
+                    <HexagonTile
+                      key={skill.name}
+                      skill={skill}
+                      isSelected={isSelected}
+                      onClick={() => setSelectedSkill(skill)}
+                      onMouseEnter={() => setSelectedSkill(skill)}
+                    />
+                  );
+                })}
+              </div>
+            ))}
           </div>
 
           {/* Diagnostic Detail Panel (Only displays active details on interaction!) */}
