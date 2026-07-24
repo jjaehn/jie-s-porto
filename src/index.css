@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap');
+
+:root {
+  /* Cyberpunk Dark Maroon & Rose Gold Color Palette */
+  --bg-dark: #070305;
+  --bg-card: rgba(22, 7, 12, 0.65);
+  --bg-card-hover: rgba(36, 10, 19, 0.85);
+  
+  /* Primary Cyberpunk Tones (No Blue / Cyan!) */
+  --deep-maroon: #4A0D1A;
+  --burgundy: #2A0810;
+  --wine-red: #721226;
+  --dark-crimson: #8C1D36;
+  --bright-crimson: #A31C38;
+  --rose-gold: #E0A96D;
+  --rose-gold-light: #F4C490;
+  --rose-gold-dark: #C58B59;
+  --accent-gold: #D4AF37;
+  
+  /* Text & Surfaces */
+  --text-white: #F9F6F0;
+  --text-cream: #E8B88A;
+  --text-gray: #B3A4A9;
+  --text-muted: #7A696F;
+  
+  /* Blurs & Shadows */
+  --glass-blur: 20px;
+  --glass-border: 1px solid rgba(224, 169, 109, 0.15);
+  --glass-border-hover: 1px solid rgba(224, 169, 109, 0.45);
+  --maroon-glow: 0 0 25px rgba(140, 29, 54, 0.35);
+  --crimson-glow: 0 0 30px rgba(163, 28, 56, 0.45);
+  --rose-glow: 0 0 25px rgba(224, 169, 109, 0.35);
+  
+  /* Fonts */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-medium: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset & Global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--bg-dark);
+  selection-background-color: var(--dark-crimson);
+  selection-color: var(--text-white);
+}
+
+::selection {
+  background: var(--dark-crimson);
+  color: var(--text-white);
+}
+
+/* Custom Cyberpunk Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--deep-maroon) 0%, var(--wine-red) 50%, var(--rose-gold-dark) 100%);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--wine-red) 0%, var(--dark-crimson) 50%, var(--rose-gold) 100%);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+p {
+  line-height: 1.65;
+  color: var(--text-gray);
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.section {
+  padding: 7.5rem 0;
+  position: relative;
+}
+
+.section-title-wrapper {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.section-subtitle {
+  color: var(--rose-gold);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  margin-bottom: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.section-subtitle::before, .section-subtitle::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rose-gold));
+}
+
+.section-subtitle::after {
+  background: linear-gradient(90deg, var(--rose-gold), transparent);
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--text-white) 20%, var(--rose-gold-light) 65%, var(--accent-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  letter-spacing: -0.02em;
+}
+
+/* Glassmorphism Card base */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+  border-radius: 20px;
+  padding: 2.2rem;
+  transition: transform var(--transition-medium), border var(--transition-medium), box-shadow var(--transition-medium), background var(--transition-medium);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.glass-card:hover {
+  background: var(--bg-card-hover);
+  border: var(--glass-border-hover);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), var(--maroon-glow);
+  transform: translateY(-4px);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 2.2rem;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition-medium);
+  text-decoration: none;
+  gap: 0.6rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--wine-red) 0%, var(--dark-crimson) 50%, var(--deep-maroon) 100%);
+  color: var(--text-white);
+  border: 1px solid rgba(224, 169, 109, 0.35);
+  box-shadow: 0 8px 25px rgba(114, 18, 38, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(163, 28, 56, 0.7), var(--rose-glow);
+  border-color: var(--rose-gold-light);
+  background: linear-gradient(135deg, var(--dark-crimson) 0%, var(--bright-crimson) 50%, var(--wine-red) 100%);
+}
+
+.btn-secondary {
+  background: rgba(42, 8, 16, 0.5);
+  color: var(--text-white);
+  border: var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.btn-secondary:hover {
+  background: rgba(114, 18, 38, 0.3);
+  border-color: var(--rose-gold);
+  color: var(--rose-gold-light);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(74, 13, 26, 0.4);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--rose-gold-dark) 0%, var(--rose-gold) 100%);
+  color: #120306;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 8px 20px rgba(224, 169, 109, 0.35);
+}
+
+.btn-accent:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(224, 169, 109, 0.5);
+  background: linear-gradient(135deg, var(--rose-gold) 0%, var(--rose-gold-light) 100%);
+}
+
+/* Cyberpunk Animations */
+@keyframes radar-pulse {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes orbit-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; filter: drop-shadow(0 0 8px rgba(224, 169, 109, 0.4)); }
+  50% { opacity: 0.9; filter: drop-shadow(0 0 18px rgba(163, 28, 56, 0.8)); }
+}
+
+/* Bento Grid */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+/* Responsive adjust */
+@media (max-width: 1024px) {
+  .section {
+    padding: 5.5rem 0;
+  }
+  .section-title {
+    font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+  .section {
+    padding: 4rem 0;
+  }
+  .section-title {
+    font-size: 1.9rem;
+  }
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
