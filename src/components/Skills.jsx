@@ -147,7 +147,6 @@ export default function Skills() {
 
   const layoutGrid = {
     display: 'grid',
-    gridTemplateColumns: '1.25fr 0.75fr',
     gap: '3rem',
     alignItems: 'start',
   };

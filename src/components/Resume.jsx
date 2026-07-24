@@ -124,7 +124,6 @@ export default function Resume() {
 
   const layoutGrid = {
     display: 'grid',
-    gridTemplateColumns: '0.8fr 1.2fr',
     gap: '3.5rem',
     alignItems: 'start',
   };

@@ -75,7 +75,6 @@ export default function Contact() {
 
   const gridStyle = {
     display: 'grid',
-    gridTemplateColumns: '0.9fr 1.1fr',
     gap: '3.5rem',
     alignItems: 'start',
   };

@@ -42,7 +42,6 @@ export default function About() {
 
   const gridStyle = {
     display: 'grid',
-    gridTemplateColumns: '1.05fr 0.95fr',
     gap: '3.5rem',
     alignItems: 'stretch',
   };
