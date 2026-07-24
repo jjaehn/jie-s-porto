@@ -22,6 +22,8 @@ export default function CaseStudyModal({ project, onClose }) {
   const modalContainer = {
     maxWidth: '650px',
     width: '100%',
+    maxHeight: '90vh',
+    overflowY: 'auto',
     position: 'relative',
     animation: 'modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
   };

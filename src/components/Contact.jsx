@@ -221,7 +221,7 @@ export default function Contact() {
           {/* Form (Right) */}
           <div className="glass-card">
             <form onSubmit={handleSubmit} style={formStyle}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.2rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.2rem' }} className="form-row">
                 <div style={inputGroup}>
                   <label htmlFor="name" style={labelStyle}>Your Name *</label>
                   <input

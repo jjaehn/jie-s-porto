@@ -503,8 +503,10 @@ export default function InteractivePortrait({
     <div 
       ref={containerRef}
       style={{
+        maxWidth: '100%',
         width: `${width}px`,
-        height: `${height}px`,
+        height: 'auto',
+        aspectRatio: `${width} / ${height}`,
         borderRadius: '24px',
         overflow: 'hidden',
         position: 'relative',

@@ -84,18 +84,10 @@ export default function Hero({ studentName = "Jihan Azaria Bibi" }) {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    paddingTop: '8rem',
+    paddingTop: '7.5rem',
     paddingBottom: '4rem',
     position: 'relative',
     overflow: 'hidden',
-  };
-
-  const contentGrid = {
-    display: 'grid',
-    gridTemplateColumns: '1.15fr 0.85fr',
-    gap: '3.5rem',
-    alignItems: 'center',
-    marginBottom: '3.5rem',
   };
 
   const leftColumn = {
@@ -117,39 +109,6 @@ export default function Hero({ studentName = "Jihan Azaria Bibi" }) {
     letterSpacing: '0.08em',
     marginBottom: '1.2rem',
     textTransform: 'uppercase',
-  };
-
-  const nameText = {
-    fontSize: '4.4rem',
-    fontWeight: 900,
-    lineHeight: 1.05,
-    marginBottom: '1rem',
-    background: 'linear-gradient(135deg, #F9F6F0 25%, #E0A96D 70%, #D4AF37 100%)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    letterSpacing: '-0.03em',
-  };
-
-  const subtitleBlock = {
-    marginBottom: '1.4rem',
-  };
-
-  const roleTitle = {
-    fontFamily: "'Outfit', sans-serif",
-    fontSize: '1.8rem',
-    fontWeight: 700,
-    color: '#F9F6F0',
-    marginBottom: '0.2rem',
-  };
-
-  const specTitle = {
-    fontFamily: "'Outfit', sans-serif",
-    fontSize: '1.4rem',
-    fontWeight: 600,
-    color: '#E0A96D',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
   };
 
   const dynamicTitle = {
@@ -174,12 +133,6 @@ export default function Hero({ studentName = "Jihan Azaria Bibi" }) {
     maxWidth: '540px',
   };
 
-  const buttonGroup = {
-    display: 'flex',
-    gap: '1.2rem',
-    flexWrap: 'wrap',
-  };
-
   const rightColumn = {
     position: 'relative',
     display: 'flex',
@@ -187,41 +140,8 @@ export default function Hero({ studentName = "Jihan Azaria Bibi" }) {
     alignItems: 'center',
   };
 
-  const statsBarContainer = {
-    background: 'rgba(22, 7, 12, 0.65)',
-    backdropFilter: 'blur(20px)',
-    WebkitBackdropFilter: 'blur(20px)',
-    border: '1px solid rgba(224, 169, 109, 0.2)',
-    borderRadius: '24px',
-    padding: '2rem',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    textAlign: 'center',
-    gap: '1.5rem',
-    zIndex: 10,
-    boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(114, 18, 38, 0.2)',
-  };
-
-  const statNum = {
-    fontFamily: "'Outfit', sans-serif",
-    fontSize: '2.4rem',
-    fontWeight: 800,
-    background: 'linear-gradient(135deg, #F9F6F0 10%, #E0A96D 60%, #D4AF37 100%)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    marginBottom: '0.2rem',
-  };
-
-  const statLabel = {
-    fontSize: '0.82rem',
-    color: '#B3A4A9',
-    textTransform: 'uppercase',
-    letterSpacing: '0.1em',
-    fontWeight: 600,
-  };
-
   return (
-    <section id="hero" style={sectionStyle} className="container">
+    <section id="hero" style={sectionStyle} className="container hero-section">
       {/* Background Ambient Radial Glow */}
       <div 
         style={{
@@ -238,25 +158,25 @@ export default function Hero({ studentName = "Jihan Azaria Bibi" }) {
         }}
       />
 
-      <div style={contentGrid} className="hero-grid">
+      <div className="hero-grid">
         <div style={leftColumn}>
-          <div style={badgeStyle}>
+          <div style={badgeStyle} className="hero-badge">
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#E0A96D', boxShadow: '0 0 8px #E0A96D' }} />
             Artificial Intelligence &amp; Full-Stack Developer
           </div>
 
-          <h1 style={nameText}>{studentName}</h1>
+          <h1 className="hero-name">{studentName}</h1>
           
-          <div style={dynamicTitle}>
+          <div style={dynamicTitle} className="hero-dynamic-title">
             <span style={{ color: '#8C1D36' }}>&gt;</span> {displayedText}
             <span style={{ animation: 'text-blink 0.8s infinite', color: '#E0A96D' }}>|</span>
           </div>
 
-          <p style={introQuote}>
+          <p style={introQuote} className="hero-intro-quote">
             "I enjoy building intelligent systems, exploring modern technologies, and creating digital solutions that combine Artificial Intelligence with practical applications."
           </p>
 
-          <div style={buttonGroup}>
+          <div className="hero-button-group">
             <a href="#portfolio" className="btn btn-primary">
               Explore Portfolio
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -267,38 +187,13 @@ export default function Hero({ studentName = "Jihan Azaria Bibi" }) {
             </a>
 
             {/* Direct Redirect Social Buttons (GitHub, LinkedIn, Email) */}
-            <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', marginLeft: '0.4rem' }}>
+            <div className="hero-social-row">
               <a 
                 href="https://github.com" 
                 target="_blank" 
                 rel="noreferrer" 
                 title="Direct redirect to GitHub"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '46px',
-                  height: '46px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(22, 7, 12, 0.65)',
-                  border: '1px solid rgba(224, 169, 109, 0.25)',
-                  color: '#F9F6F0',
-                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                  backdropFilter: 'blur(10px)',
-                  textDecoration: 'none',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#E0A96D';
-                  e.currentTarget.style.backgroundColor = 'rgba(140, 29, 54, 0.4)';
-                  e.currentTarget.style.boxShadow = '0 0 18px rgba(224, 169, 109, 0.4)';
-                  e.currentTarget.style.transform = 'translateY(-3px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(224, 169, 109, 0.25)';
-                  e.currentTarget.style.backgroundColor = 'rgba(22, 7, 12, 0.65)';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
+                className="hero-social-btn"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
@@ -310,32 +205,7 @@ export default function Hero({ studentName = "Jihan Azaria Bibi" }) {
                 target="_blank" 
                 rel="noreferrer" 
                 title="Direct redirect to LinkedIn"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '46px',
-                  height: '46px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(22, 7, 12, 0.65)',
-                  border: '1px solid rgba(224, 169, 109, 0.25)',
-                  color: '#F9F6F0',
-                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                  backdropFilter: 'blur(10px)',
-                  textDecoration: 'none',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#E0A96D';
-                  e.currentTarget.style.backgroundColor = 'rgba(140, 29, 54, 0.4)';
-                  e.currentTarget.style.boxShadow = '0 0 18px rgba(224, 169, 109, 0.4)';
-                  e.currentTarget.style.transform = 'translateY(-3px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(224, 169, 109, 0.25)';
-                  e.currentTarget.style.backgroundColor = 'rgba(22, 7, 12, 0.65)';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
+                className="hero-social-btn"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
@@ -347,32 +217,7 @@ export default function Hero({ studentName = "Jihan Azaria Bibi" }) {
               <a 
                 href="mailto:jihan.azaria@student.president.ac.id" 
                 title="Direct redirect to Email"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '46px',
-                  height: '46px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(22, 7, 12, 0.65)',
-                  border: '1px solid rgba(224, 169, 109, 0.25)',
-                  color: '#F9F6F0',
-                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                  backdropFilter: 'blur(10px)',
-                  textDecoration: 'none',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#E0A96D';
-                  e.currentTarget.style.backgroundColor = 'rgba(140, 29, 54, 0.4)';
-                  e.currentTarget.style.boxShadow = '0 0 18px rgba(224, 169, 109, 0.4)';
-                  e.currentTarget.style.transform = 'translateY(-3px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(224, 169, 109, 0.25)';
-                  e.currentTarget.style.backgroundColor = 'rgba(22, 7, 12, 0.65)';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
+                className="hero-social-btn"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
