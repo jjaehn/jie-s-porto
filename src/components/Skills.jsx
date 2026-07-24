@@ -5,30 +5,18 @@ function HexagonTile({ skill, isSelected, onClick, onMouseEnter }) {
     <div 
       onClick={onClick}
       onMouseEnter={onMouseEnter}
-      style={{
-        width: '135px',
-        height: '150px',
-        position: 'relative',
-        cursor: 'pointer',
-        transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
-        transform: isSelected ? 'scale(1.12) translateY(-4px)' : 'scale(1)',
-        zIndex: isSelected ? 10 : 2,
-        filter: isSelected 
-          ? 'drop-shadow(0 0 22px rgba(224, 169, 109, 0.75)) drop-shadow(0 0 35px rgba(140, 29, 54, 0.6))' 
-          : 'drop-shadow(0 6px 14px rgba(0,0,0,0.6))',
-      }}
-      className="hexagon-skill-tile"
+      className={`hexagon-skill-tile ${isSelected ? 'selected' : ''}`}
     >
-      <svg width="135" height="150" viewBox="0 0 120 135" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+      <svg viewBox="0 0 120 135" className="hexagon-svg">
         <defs>
           <linearGradient id={`hexBg-${skill.name.replace(/[^a-zA-Z0-9]/g, '')}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={isSelected ? "#5C0E20" : "rgba(35, 10, 18, 0.9)"} />
-            <stop offset="100%" stopColor={isSelected ? "#2A0610" : "rgba(18, 5, 9, 0.9)"} />
+            <stop offset="0%" stopColor={isSelected ? "#721226" : "rgba(35, 10, 18, 0.9)"} />
+            <stop offset="100%" stopColor={isSelected ? "#3A0712" : "rgba(18, 5, 9, 0.9)"} />
           </linearGradient>
           <linearGradient id={`hexBorder-${skill.name.replace(/[^a-zA-Z0-9]/g, '')}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={isSelected ? "#FFF8EE" : "#E0A96D"} stopOpacity={isSelected ? 1 : 0.7} />
-            <stop offset="50%" stopColor={isSelected ? "#E0A96D" : "#8C1D36"} stopOpacity={isSelected ? 0.95 : 0.5} />
-            <stop offset="100%" stopColor={isSelected ? "#D4AF37" : "#4A0D1A"} stopOpacity={isSelected ? 1 : 0.35} />
+            <stop offset="0%" stopColor={isSelected ? "#FFF8EE" : "#E0A96D"} stopOpacity={isSelected ? 1 : 0.65} />
+            <stop offset="50%" stopColor={isSelected ? "#E0A96D" : "#8C1D36"} stopOpacity={isSelected ? 1 : 0.45} />
+            <stop offset="100%" stopColor={isSelected ? "#D4AF37" : "#4A0D1A"} stopOpacity={isSelected ? 1 : 0.3} />
           </linearGradient>
         </defs>
 
@@ -37,7 +25,7 @@ function HexagonTile({ skill, isSelected, onClick, onMouseEnter }) {
           points="60,3 115,33 115,95 60,125 5,95 5,33" 
           fill={`url(#hexBg-${skill.name.replace(/[^a-zA-Z0-9]/g, '')})`}
           stroke={`url(#hexBorder-${skill.name.replace(/[^a-zA-Z0-9]/g, '')})`}
-          strokeWidth={isSelected ? "3.2" : "2"}
+          strokeWidth={isSelected ? "3.5" : "2"}
           strokeLinejoin="round"
         />
 
@@ -45,41 +33,18 @@ function HexagonTile({ skill, isSelected, onClick, onMouseEnter }) {
         <polygon 
           points="60,9 109,36 109,92 60,119 11,92 11,36" 
           fill="none"
-          stroke={isSelected ? "rgba(249, 246, 240, 0.5)" : "rgba(224, 169, 109, 0.22)"}
+          stroke={isSelected ? "rgba(249, 246, 240, 0.6)" : "rgba(224, 169, 109, 0.2)"}
           strokeWidth="1.2"
           strokeDasharray="4 2"
         />
       </svg>
 
       {/* Hexagon Content */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '1.2rem 0.6rem',
-        textAlign: 'center',
-        zIndex: 3,
-        pointerEvents: 'none',
-      }}>
-        <span style={{ fontSize: '1.85rem', marginBottom: '0.2rem', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.6))' }}>
+      <div className="hexagon-content">
+        <span className="hexagon-icon">
           {skill.icon}
         </span>
-        <span style={{
-          fontFamily: "'Outfit', sans-serif",
-          fontSize: '0.8rem',
-          fontWeight: 700,
-          color: isSelected ? '#F9F6F0' : '#E6D7DC',
-          lineHeight: 1.15,
-          maxWidth: '92px',
-          wordBreak: 'break-word',
-          textShadow: isSelected ? '0 0 10px rgba(224, 169, 109, 0.9)' : 'none',
-        }}>
+        <span className="hexagon-name">
           {skill.name}
         </span>
       </div>
@@ -111,7 +76,6 @@ export default function Skills() {
   const categories = ["All", "AI Tools", "AI Frameworks", "Frontend", "Backend", "Tools"];
 
   const [activeCategory, setActiveCategory] = useState("All");
-  // Set initial selectedSkill to null so explanation appears ONLY on interaction!
   const [selectedSkill, setSelectedSkill] = useState(null);
 
   const filteredSkills = activeCategory === "All" 
@@ -224,15 +188,6 @@ export default function Skills() {
     color: selectedSkill ? '#F9F6F0' : '#5C4A50',
   };
 
-  // Group filtered skills into 3 HORIZONTAL ROWS (expands sideways to the right)
-  const numRows = 3;
-  const horizontalRows = Array.from({ length: numRows }, () => []);
-
-  filteredSkills.forEach((skill, idx) => {
-    const rowIndex = idx % numRows;
-    horizontalRows[rowIndex].push(skill);
-  });
-
   return (
     <section id="skills" className="section" style={sectionStyle}>
       <div className="container">
@@ -257,46 +212,20 @@ export default function Skills() {
         </div>
 
         <div style={layoutGrid} className="skills-layout">
-          {/* Horizontal Honeycomb Container (Expands Sideways / Ke Samping) */}
-          <div 
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              padding: '1rem 0',
-              overflowX: 'auto',
-              maxWidth: '100%',
-              scrollbarWidth: 'thin',
-              scrollbarColor: '#8C1D36 rgba(22, 7, 12, 0.5)',
-            }} 
-            className="horizontal-honeycomb-wrapper"
-          >
-            {horizontalRows.map((rowItems, rowIndex) => (
-              <div 
-                key={rowIndex} 
-                style={{
-                  display: 'flex',
-                  gap: '12px',
-                  marginTop: rowIndex === 0 ? 0 : '-34px', // Interlocks top/bottom vertices
-                  paddingLeft: rowIndex === 1 ? '72px' : '0px', // Staggers middle row horizontally (Sarang Madu)
-                  position: 'relative',
-                  zIndex: rowIndex,
-                  minWidth: 'max-content',
-                }}
-              >
-                {rowItems.map(skill => {
-                  const isSelected = selectedSkill?.name === skill.name;
-                  return (
-                    <HexagonTile
-                      key={skill.name}
-                      skill={skill}
-                      isSelected={isSelected}
-                      onClick={() => setSelectedSkill(skill)}
-                      onMouseEnter={() => setSelectedSkill(skill)}
-                    />
-                  );
-                })}
-              </div>
-            ))}
+          {/* Honeycomb Container (Fits 100% width without horizontal scrollbar) */}
+          <div className="horizontal-honeycomb-wrapper">
+            {filteredSkills.map(skill => {
+              const isSelected = selectedSkill?.name === skill.name;
+              return (
+                <HexagonTile
+                  key={skill.name}
+                  skill={skill}
+                  isSelected={isSelected}
+                  onClick={() => setSelectedSkill(skill)}
+                  onMouseEnter={() => setSelectedSkill(skill)}
+                />
+              );
+            })}
           </div>
 
           {/* Diagnostic Detail Panel (Only displays active details on interaction!) */}
