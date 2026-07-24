@@ -237,69 +237,24 @@ export default function Skills() {
           ))}
         </div>
 
-        <div style={layoutGrid} className="skills-layout">
-          {/* Interlocking Honeycomb Pyramid Container (Fits 100% width without horizontal scrollbar) */}
-          <div className="horizontal-honeycomb-wrapper">
-            {honeycombRows.map((rowItems, rowIndex) => (
-              <div key={rowIndex} className="honeycomb-row">
-                {rowItems.map(skill => {
-                  const isSelected = selectedSkill?.name === skill.name;
-                  return (
-                    <HexagonTile
-                      key={skill.name}
-                      skill={skill}
-                      isSelected={isSelected}
-                      onClick={() => setSelectedSkill(skill)}
-                      onMouseEnter={() => setSelectedSkill(skill)}
-                    />
-                  );
-                })}
-              </div>
-            ))}
-          </div>
-
-          {/* Diagnostic Detail Panel (Only displays active details on interaction!) */}
-          <div style={diagnosticPanel} className="skills-diagnostic-panel">
-            {selectedSkill ? (
-              <>
-                <div style={diagBadge}>{selectedSkill.category}</div>
-                <h3 style={diagTitle}>{selectedSkill.name}</h3>
-                <p style={diagDesc}>{selectedSkill.desc}</p>
-
-                <div style={diagRow}>
-                  <div>
-                    <div style={diagLabel}>Proficiency Level</div>
-                    <div style={{ ...diagVal, color: '#E0A96D' }}>{selectedSkill.level}</div>
-                  </div>
-                  <div>
-                    <div style={diagLabel}>Integration Index</div>
-                    <div style={diagVal}>
-                      {selectedSkill.level === 'Expert' ? '98%' : selectedSkill.level === 'Advanced' ? '88%' : '78%'}
-                    </div>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <div style={diagBadge}>🔍 Hover / Click Skill</div>
-                <h3 style={diagTitle}>Select A Skill</h3>
-                <p style={diagDesc}>
-                  Arahkan kursor atau klik pada salah satu modul keahlian (hexagon) di sebelah kiri untuk melihat deskripsi lengkap, tingkat kemahiran, dan indeks integrasi.
-                </p>
-
-                <div style={diagRow}>
-                  <div>
-                    <div style={diagLabel}>Proficiency Level</div>
-                    <div style={diagVal}>---</div>
-                  </div>
-                  <div>
-                    <div style={diagLabel}>Integration Index</div>
-                    <div style={diagVal}>---</div>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
+        {/* Interlocking Honeycomb Pyramid Container */}
+        <div className="horizontal-honeycomb-wrapper">
+          {honeycombRows.map((rowItems, rowIndex) => (
+            <div key={rowIndex} className="honeycomb-row">
+              {rowItems.map(skill => {
+                const isSelected = selectedSkill?.name === skill.name;
+                return (
+                  <HexagonTile
+                    key={skill.name}
+                    skill={skill}
+                    isSelected={isSelected}
+                    onClick={() => setSelectedSkill(skill)}
+                    onMouseEnter={() => setSelectedSkill(skill)}
+                  />
+                );
+              })}
+            </div>
+          ))}
         </div>
       </div>
     </section>
