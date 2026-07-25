@@ -584,12 +584,12 @@ p {
 }
 
 .honeycomb-row + .honeycomb-row {
-  margin-top: -24px; /* Pulls lower row up so pointy top fits into upper notch! */
+  margin-top: -26px; /* Pulls lower row up so pointy top fits into upper notch! */
 }
 
 .hexagon-skill-tile {
-  width: 90px;
-  height: 101px;
+  width: 96px;
+  height: 108px;
   position: relative;
   cursor: pointer;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease, z-index 0.35s ease;
@@ -623,24 +623,25 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.6rem 0.4rem;
+  padding: 0.5rem 0.3rem;
   text-align: center;
   z-index: 3;
   pointer-events: none;
 }
 
 .hexagon-icon-box {
-  width: 36px;
-  height: 36px;
-  border-radius: 11px;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
   background: linear-gradient(135deg, rgba(42, 10, 20, 0.85), rgba(18, 5, 10, 0.95));
   border: 1px solid rgba(224, 169, 109, 0.35);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 4px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 3px 8px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
 }
 
 .hexagon-skill-tile:hover .hexagon-icon-box,
@@ -654,11 +655,11 @@ p {
 
 .hexagon-name {
   font-family: var(--font-heading);
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 700;
   color: #E6D7DC;
-  line-height: 1.1;
-  max-width: 76px;
+  line-height: 1.05;
+  max-width: 66px;
   word-break: break-word;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
