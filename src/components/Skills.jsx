@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SkillIcon from './SkillIcons';
 
 function HexagonTile({ skill, isSelected, onClick, onMouseEnter }) {
   return (
@@ -41,9 +42,7 @@ function HexagonTile({ skill, isSelected, onClick, onMouseEnter }) {
 
       {/* Hexagon Content */}
       <div className="hexagon-content">
-        <span className="hexagon-icon">
-          {skill.icon}
-        </span>
+        <SkillIcon name={skill.name} isSelected={isSelected} />
         <span className="hexagon-name">
           {skill.name}
         </span>

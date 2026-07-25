@@ -629,15 +629,32 @@ p {
   pointer-events: none;
 }
 
-.hexagon-icon {
-  font-size: 1.45rem;
-  margin-bottom: 0.15rem;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+.hexagon-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, rgba(42, 10, 20, 0.85), rgba(18, 5, 10, 0.95));
+  border: 1px solid rgba(224, 169, 109, 0.35);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 4px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.2rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hexagon-skill-tile:hover .hexagon-icon-box,
+.hexagon-skill-tile.selected .hexagon-icon-box,
+.hexagon-icon-box.selected {
+  border-color: rgba(224, 169, 109, 0.95);
+  background: linear-gradient(135deg, rgba(140, 29, 54, 0.95), rgba(58, 7, 18, 0.95));
+  box-shadow: 0 0 16px rgba(224, 169, 109, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  transform: scale(1.08);
 }
 
 .hexagon-name {
   font-family: var(--font-heading);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 700;
   color: #E6D7DC;
   line-height: 1.1;
@@ -671,12 +688,20 @@ p {
     height: 70px;
   }
 
-  .hexagon-icon {
-    font-size: 1.05rem;
+  .hexagon-icon-box {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    margin-bottom: 0.1rem;
+  }
+
+  .hexagon-icon-box svg {
+    width: 14px;
+    height: 14px;
   }
 
   .hexagon-name {
-    font-size: 0.56rem;
+    font-size: 0.54rem;
     max-width: 54px;
   }
 }
