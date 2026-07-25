@@ -171,7 +171,7 @@ export default function App() {
       <BackgroundEffect />
 
       {/* Floating navigation system */}
-      <Navbar currentPath={path} setPath={setPath} />
+      {path !== '/admin' && <Navbar currentPath={path} setPath={setPath} />}
 
       {/* Main Routing Gateway */}
       {path === '/admin' ? (
