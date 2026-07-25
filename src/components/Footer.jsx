@@ -44,15 +44,33 @@ export default function Footer({ studentName = "Jihan Azaria Bibi" }) {
     animation: 'glow-pulse 2s infinite',
   };
 
+  const adminLink = {
+    fontSize: '0.82rem',
+    color: '#7A696F',
+    textDecoration: 'none',
+    transition: 'color 0.3s ease',
+    cursor: 'pointer',
+  };
+
   return (
     <footer style={footerStyle}>
       <div className="container" style={wrapper}>
         <div style={copyText}>
           © {new Date().getFullYear()} <strong>{studentName}</strong> • President University Informatics AI Laboratory.
         </div>
-        <div style={designText}>
-          <span style={pulseIndicator} />
-          Artificial Intelligence & Cyberpunk Design System
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <a 
+            href="#/admin" 
+            style={adminLink} 
+            onMouseEnter={(e) => e.target.style.color = '#E0A96D'} 
+            onMouseLeave={(e) => e.target.style.color = '#7A696F'}
+          >
+            Admin Portal
+          </a>
+          <div style={designText}>
+            <span style={pulseIndicator} />
+            Artificial Intelligence &amp; Cyberpunk Design System
+          </div>
         </div>
       </div>
     </footer>
