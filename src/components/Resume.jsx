@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Resume() {
-  const resumeData = [
+  const defaultResumeData = [
     {
       category: "Education",
       date: "2023 - Present",
@@ -87,6 +87,18 @@ export default function Resume() {
       desc: "Selected as top finalist for presenting an AI-driven smart safety and monitoring prototype."
     }
   ];
+
+  const [resumeData] = useState(() => {
+    const saved = localStorage.getItem('lab_experiences');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    return defaultResumeData;
+  });
 
   const sectionStyle = {
     position: 'relative',

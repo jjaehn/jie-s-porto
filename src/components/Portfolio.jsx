@@ -13,7 +13,7 @@ export default function Portfolio({ onCaseStudySelect }) {
     "Research Projects"
   ];
 
-  const projects = [
+  const defaultProjects = [
     {
       id: "smart-safe",
       title: "Smart Safe Facial Lockbox",
@@ -24,7 +24,8 @@ export default function Portfolio({ onCaseStudySelect }) {
       github: "https://github.com",
       demo: "https://demo.com",
       caseStudy: "Designed a multi-modal hardware security box. Achieved 99.2% face verification accuracy under dim lighting with low edge latency.",
-      previewType: "safe"
+      previewType: "safe",
+      status: "published"
     },
     {
       id: "currency-detection",
@@ -36,7 +37,8 @@ export default function Portfolio({ onCaseStudySelect }) {
       github: "https://github.com",
       demo: "https://demo.com",
       caseStudy: "Quantized MobileNet model weights to 8MB. Integrated real-time audio voice prompts for instant currency recognition.",
-      previewType: "currency"
+      previewType: "currency",
+      status: "published"
     },
     {
       id: "face-emotion",
@@ -48,7 +50,8 @@ export default function Portfolio({ onCaseStudySelect }) {
       github: "https://github.com",
       demo: "https://demo.com",
       caseStudy: "Trained CNN on FER2013 with 468 landmark mesh points. Streamed real-time emotion telemetry via WebSocket.",
-      previewType: "emotion"
+      previewType: "emotion",
+      status: "published"
     },
     {
       id: "pm-system",
@@ -60,7 +63,8 @@ export default function Portfolio({ onCaseStudySelect }) {
       github: "https://github.com",
       demo: "https://demo.com",
       caseStudy: "Built a random forest estimator serving JSON predictions to a glassmorphic React dashboard connected to Firebase.",
-      previewType: "pm"
+      previewType: "pm",
+      status: "published"
     },
     {
       id: "ai-chatbot",
@@ -72,33 +76,23 @@ export default function Portfolio({ onCaseStudySelect }) {
       github: "https://github.com",
       demo: "https://demo.com",
       caseStudy: "Ingested 400 pages of lab user guides into Chroma vector database. Used LangChain to resolve queries locally.",
-      previewType: "chatbot"
-    },
-    {
-      id: "iot-monitoring",
-      title: "IoT Edge AI Telemetry Station",
-      category: "IoT Projects",
-      tech: ["ESP32", "Raspberry Pi", "Python", "MQTT"],
-      desc: "Smart environmental and security monitoring box running edge anomaly detection and transmitting MQTT telemetry data.",
-      span: "span 6",
-      github: "https://github.com",
-      demo: "https://demo.com",
-      caseStudy: "Connected ESP32 sensors to Raspberry Pi edge Gateway. Runs local sensor validation before cloud database syncing.",
-      previewType: "iot"
-    },
-    {
-      id: "edge-vision-research",
-      title: "Edge Vision Inference Optimization",
-      category: "Research Projects",
-      tech: ["Python", "TensorFlow Lite", "Int8 Quantization", "Raspberry Pi"],
-      desc: "Undergraduate research benchmarking low-power quantization techniques for Convolutional Neural Networks on edge hardware.",
-      span: "span 6",
-      github: "https://github.com",
-      demo: "https://demo.com",
-      caseStudy: "Contrasted FP32 vs Int8 quantized models. Achieved 3.2x inference speedup on ARM processors with minimal accuracy loss.",
-      previewType: "research"
+      previewType: "chatbot",
+      status: "published"
     }
   ];
+
+  const [projects] = useState(() => {
+    const saved = localStorage.getItem('lab_projects');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return parsed.filter(p => p.status !== 'draft');
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    return defaultProjects;
+  });
 
   const filteredProjects = activeCategory === "All"
     ? projects
