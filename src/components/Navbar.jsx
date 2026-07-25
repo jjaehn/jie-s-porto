@@ -10,7 +10,7 @@ export default function Navbar({ currentPath, setPath }) {
       setScrolled(window.scrollY > 20);
 
       // Section intersection detection for active highlight
-      const sections = ['hero', 'about', 'skills', 'portfolio', 'contact'];
+      const sections = ['hero', 'about', 'skills', 'portfolio', 'resume', 'contact'];
       const scrollPos = window.scrollY + 200;
 
       for (let sec of sections) {
@@ -44,6 +44,7 @@ export default function Navbar({ currentPath, setPath }) {
     { id: 'about', name: 'About', href: '#about' },
     { id: 'skills', name: 'Skills', href: '#skills' },
     { id: 'portfolio', name: 'Projects', href: '#portfolio' },
+    { id: 'resume', name: 'Experience', href: '#resume' },
     { id: 'contact', name: 'Contact', href: '#contact' },
   ];
 
