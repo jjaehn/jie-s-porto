@@ -43,8 +43,8 @@ export default function Navbar({ currentPath, setPath }) {
     { id: 'hero', name: 'Home', href: '#hero' },
     { id: 'about', name: 'About', href: '#about' },
     { id: 'skills', name: 'Skills', href: '#skills' },
-    { id: 'portfolio', name: 'Portfolio', href: '#portfolio' },
-    { id: 'resume', name: 'Resume', href: '#resume' },
+    { id: 'portfolio', name: 'Projects', href: '#portfolio' },
+    { id: 'resume', name: 'Experience', href: '#resume' },
     { id: 'contact', name: 'Contact', href: '#contact' },
   ];
 

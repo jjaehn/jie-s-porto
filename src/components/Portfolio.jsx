@@ -512,7 +512,7 @@ export default function Portfolio({ onCaseStudySelect }) {
       <div className="container">
         <div className="section-title-wrapper">
           <span className="section-subtitle">Showcase Repositories</span>
-          <h2 className="section-title">Futuristic Portfolio</h2>
+          <h2 className="section-title">Featured Projects</h2>
         </div>
 
         {/* Categories filters */}

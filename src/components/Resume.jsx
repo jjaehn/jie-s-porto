@@ -217,7 +217,7 @@ export default function Resume() {
       <div className="container">
         <div className="section-title-wrapper">
           <span className="section-subtitle">Academic & Professional Career</span>
-          <h2 className="section-title">Resume & Timeline</h2>
+          <h2 className="section-title">Experience & Timeline</h2>
         </div>
 
         <div style={layoutGrid} className="resume-grid">
