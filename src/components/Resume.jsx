@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 export default function Resume() {
+  const [selectedExperience, setSelectedExperience] = useState(null);
+
   const defaultResumeData = [
     {
       category: "Education",
@@ -188,9 +190,29 @@ export default function Resume() {
         {/* Direct Timeline View (No category filter buttons) */}
         <div style={timelineWrapper}>
           {resumeData.map((item, idx) => (
-            <div key={idx} style={timelineItem}>
+            <div 
+              key={idx} 
+              style={{ ...timelineItem, cursor: 'pointer' }}
+              onClick={() => setSelectedExperience(item)}
+            >
               <div style={timelineDot} />
-              <div style={catBadge}>{item.category}</div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <div style={catBadge}>{item.category}</div>
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setSelectedExperience(item); }}
+                  style={{ background: 'none', border: 'none', color: '#E0A96D', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', fontFamily: "'Outfit', sans-serif" }}
+                >
+                  View Details →
+                </button>
+              </div>
+
+              {/* Optional Photo/Certificate Preview Thumbnail */}
+              {item.image && (
+                <div style={{ width: '100%', maxHeight: '180px', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(224, 169, 109, 0.25)', marginBottom: '1rem', marginTop: '0.5rem' }}>
+                  <img src={item.image} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+              )}
+
               <div style={timelineDate}>{item.date}</div>
               <h3 style={timelineTitle}>{item.title}</h3>
               <div style={timelineSubtitle}>{item.subtitle}</div>
@@ -199,6 +221,53 @@ export default function Resume() {
           ))}
         </div>
       </div>
+
+      {/* --- EXPERIENCE DETAIL MODAL POPUP --- */}
+      {selectedExperience && (
+        <div 
+          onClick={() => setSelectedExperience(null)} 
+          style={{ position: 'fixed', inset: 0, zIndex: 3000, backgroundColor: 'rgba(7, 3, 5, 0.85)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem' }}
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()} 
+            className="glass-card" 
+            style={{ maxWidth: '620px', width: '100%', maxHeight: '90vh', overflowY: 'auto', position: 'relative', border: '1px solid rgba(224, 169, 109, 0.35)', animation: 'modalSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1)' }}
+          >
+            <button 
+              onClick={() => setSelectedExperience(null)} 
+              style={{ position: 'absolute', top: '1.2rem', right: '1.2rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#F9F6F0', borderRadius: '50%', width: '32px', height: '32px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              ✕
+            </button>
+
+            <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#E0A96D', backgroundColor: 'rgba(140, 29, 54, 0.3)', padding: '0.25rem 0.75rem', borderRadius: '12px', border: '1px solid rgba(224, 169, 109, 0.25)', display: 'inline-block', marginBottom: '1rem' }}>
+              {selectedExperience.category}
+            </span>
+
+            <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.8rem', fontWeight: 800, color: '#F9F6F0', marginBottom: '0.2rem' }}>{selectedExperience.title}</h2>
+            <div style={{ fontSize: '1.1rem', color: '#D4AF37', fontWeight: 600, marginBottom: '0.5rem' }}>{selectedExperience.subtitle}</div>
+            <div style={{ fontSize: '0.85rem', color: '#E0A96D', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.5rem' }}>{selectedExperience.date}</div>
+
+            {/* Photo / Certificate Image Preview */}
+            {selectedExperience.image && (
+              <div style={{ width: '100%', maxHeight: '300px', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(224, 169, 109, 0.3)', marginBottom: '1.5rem', backgroundColor: '#070305' }}>
+                <img src={selectedExperience.image} alt={selectedExperience.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+            )}
+
+            <div style={{ borderTop: '1px solid rgba(224, 169, 109, 0.15)', paddingTop: '1.2rem' }}>
+              <h4 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', color: '#F9F6F0', marginBottom: '0.5rem' }}>Overview &amp; Key Details</h4>
+              <p style={{ fontSize: '0.95rem', color: '#B3A4A9', lineHeight: 1.65 }}>{selectedExperience.desc}</p>
+            </div>
+
+            <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-end' }}>
+              <button onClick={() => setSelectedExperience(null)} className="btn btn-primary" style={{ padding: '0.6rem 1.4rem' }}>
+                Close Detail
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

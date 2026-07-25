@@ -123,8 +123,15 @@ export default function CaseStudyModal({ project, onClose }) {
         <div style={metaGroup}>
           <span>{project.category}</span>
           <span>•</span>
-          <span>Secure Archive Node</span>
+          <span>{project.date || 'Active Archive'}</span>
         </div>
+
+        {/* High-res Image Display */}
+        {project.image && (
+          <div style={{ width: '100%', maxHeight: '320px', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(224, 169, 109, 0.3)', marginBottom: '1.5rem', backgroundColor: '#070305' }}>
+            <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
+        )}
 
         <h3 style={subHeading}>Laboratory Objectives</h3>
         <p style={textStyle}>{project.desc}</p>

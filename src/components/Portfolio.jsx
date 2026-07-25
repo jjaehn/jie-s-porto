@@ -531,7 +531,11 @@ export default function Portfolio({ onCaseStudySelect }) {
             >
               {/* Interactive cover */}
               <div style={previewContainer}>
-                {renderPreviewGraphic(proj.previewType)}
+                {proj.image ? (
+                  <img src={proj.image} alt={proj.title} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+                ) : (
+                  renderPreviewGraphic(proj.previewType)
+                )}
               </div>
 
               {/* Info */}

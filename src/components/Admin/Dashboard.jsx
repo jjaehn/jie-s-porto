@@ -1293,6 +1293,22 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
                 </div>
               </div>
 
+              <div>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#F9F6F0', marginBottom: '0.3rem' }}>Project Cover Image URL</label>
+                <input
+                  type="text"
+                  placeholder="e.g. https://... or /ai_researcher_portrait.png"
+                  value={projectModal.data.image || ''}
+                  onChange={(e) => setProjectModal({ ...projectModal, data: { ...projectModal.data, image: e.target.value } })}
+                  style={fieldInputStyle}
+                />
+                {projectModal.data.image && (
+                  <div style={{ marginTop: '0.6rem', width: '100%', maxHeight: '160px', borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(224, 169, 109, 0.3)' }}>
+                    <img src={projectModal.data.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                )}
+              </div>
+
               {/* Status & Featured Toggles */}
               <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', paddingTop: '0.5rem' }}>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer', fontSize: '0.9rem', color: '#F9F6F0' }}>
@@ -1397,6 +1413,22 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
                   onChange={(e) => setExperienceModal({ ...experienceModal, data: { ...experienceModal.data, desc: e.target.value } })}
                   style={{ ...fieldInputStyle, resize: 'vertical' }}
                 />
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#F9F6F0', marginBottom: '0.3rem' }}>Photo / Certificate Image URL</label>
+                <input
+                  type="text"
+                  placeholder="e.g. https://... or /ai_researcher_portrait.png"
+                  value={experienceModal.data.image || ''}
+                  onChange={(e) => setExperienceModal({ ...experienceModal, data: { ...experienceModal.data, image: e.target.value } })}
+                  style={fieldInputStyle}
+                />
+                {experienceModal.data.image && (
+                  <div style={{ marginTop: '0.6rem', width: '100%', maxHeight: '150px', borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(224, 169, 109, 0.3)' }}>
+                    <img src={experienceModal.data.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                )}
               </div>
 
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', marginTop: '1rem' }}>
