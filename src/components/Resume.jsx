@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function Resume() {
-  const [activeCategory, setActiveCategory] = useState("All");
-
   const resumeData = [
     {
       category: "Education",
@@ -90,38 +88,10 @@ export default function Resume() {
     }
   ];
 
-  const categories = ["All", "Education", "Experience", "Organizations", "Certifications", "Achievements"];
-
-  const filteredItems = activeCategory === "All" 
-    ? resumeData 
-    : resumeData.filter(item => item.category === activeCategory);
-
   const sectionStyle = {
     position: 'relative',
     zIndex: 2,
   };
-
-  const filterContainer = {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '0.8rem',
-    flexWrap: 'wrap',
-    marginBottom: '3.5rem',
-  };
-
-  const filterBtn = (isActive) => ({
-    padding: '0.6rem 1.4rem',
-    borderRadius: '12px',
-    border: isActive ? '1px solid rgba(224, 169, 109, 0.45)' : '1px solid rgba(255, 255, 255, 0.05)',
-    background: isActive ? 'linear-gradient(135deg, rgba(140, 29, 54, 0.4), rgba(42, 8, 16, 0.6))' : 'rgba(22, 7, 12, 0.45)',
-    color: isActive ? '#F9F6F0' : '#B3A4A9',
-    fontFamily: "'Outfit', sans-serif",
-    fontSize: '0.9rem',
-    fontWeight: isActive ? 600 : 500,
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    boxShadow: isActive ? '0 0 15px rgba(140, 29, 54, 0.3)' : 'none',
-  });
 
   const timelineWrapper = {
     maxWidth: '820px',
@@ -203,27 +173,12 @@ export default function Resume() {
           <h2 className="section-title">Experience</h2>
         </div>
 
-        {/* Category Filters */}
-        <div style={filterContainer}>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              style={filterBtn(activeCategory === cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Full-Width Timeline Items (No side tab box) */}
+        {/* Direct Timeline View (No category filter buttons) */}
         <div style={timelineWrapper}>
-          {filteredItems.map((item, idx) => (
+          {resumeData.map((item, idx) => (
             <div key={idx} style={timelineItem}>
               <div style={timelineDot} />
-              {activeCategory === "All" && (
-                <div style={catBadge}>{item.category}</div>
-              )}
+              <div style={catBadge}>{item.category}</div>
               <div style={timelineDate}>{item.date}</div>
               <h3 style={timelineTitle}>{item.title}</h3>
               <div style={timelineSubtitle}>{item.subtitle}</div>
