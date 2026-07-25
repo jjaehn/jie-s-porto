@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
-import Expertise from './components/Expertise';
 import Portfolio from './components/Portfolio';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
@@ -193,7 +192,6 @@ export default function App() {
           <Hero studentName={globalState.studentName} />
           <About />
           <Skills />
-          <Expertise />
           {/* Custom portfolio displaying bento items */}
           <Portfolio onCaseStudySelect={(proj) => setSelectedCaseStudy(proj)} />
           <Resume />
