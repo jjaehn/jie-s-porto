@@ -53,8 +53,8 @@ export default function Contact() {
     },
     { 
       name: 'Instagram', 
-      value: '@jihanazaria', 
-      href: 'https://instagram.com', 
+      value: adminProfile.instagram || '@jjaeaj', 
+      href: adminProfile.instagramUrl || 'https://instagram.com/jjaeaj', 
       icon: 'M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5z M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01' 
     }
   ];
