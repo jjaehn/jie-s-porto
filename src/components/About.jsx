@@ -21,7 +21,7 @@ export default function About() {
         </svg>
       ),
       title: "AI & Web Development",
-      desc: "Combines modern web architectures with state-of-the-art machine learning models, constructing responsive digital applications powered by backend intelligence."
+      desc: "Combines modern web architectures with state of the art machine learning models, constructing responsive digital applications powered by backend intelligence."
     },
     {
       icon: (
@@ -31,7 +31,7 @@ export default function About() {
         </svg>
       ),
       title: "Continuous Learning",
-      desc: "Enjoys exploring emerging technologies, solving complex real-world problems, and constantly honing technical skills through projects, research, and organizational activities."
+      desc: "Enjoys exploring emerging technologies, solving complex real world problems, and constantly honing technical skills through projects, research, and organizational activities."
     }
   ];
 
@@ -142,11 +142,11 @@ export default function About() {
               </h3>
               
               <p style={bioText}>
-                I am an Informatics student at <strong>President University</strong> with a strong passion for Artificial Intelligence and Web Development. I thrive on learning emerging technologies, tackling real-world challenges, and continuously advancing my technical expertise through hands-on projects, research papers, and active organizational leadership.
+                I am an Informatics student at <strong>President University</strong> with a strong passion for Artificial Intelligence and Web Development. I thrive on learning emerging technologies, tackling real world challenges, and continuously advancing my technical expertise through hands on projects, research papers, and active organizational leadership.
               </p>
 
               <p style={{ ...bioText, marginBottom: '2rem' }}>
-                My objective is to bridge computational intelligence with user-centric software design—building intelligent systems, computer vision tools, and modern web applications that deliver practical value and impactful real-world solutions.
+                My objective is to bridge computational intelligence with user centric software design—building intelligent systems, computer vision tools, and modern web applications that deliver practical value and impactful real world solutions.
               </p>
             </div>
 

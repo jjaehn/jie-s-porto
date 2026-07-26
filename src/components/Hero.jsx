@@ -162,7 +162,7 @@ export default function Hero({ studentName = "Jihan Azaria Bibi" }) {
         <div style={leftColumn}>
           <div style={badgeStyle} className="hero-badge">
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#E0A96D', boxShadow: '0 0 8px #E0A96D' }} />
-            Artificial Intelligence &amp; Full-Stack Developer
+            Artificial Intelligence &amp; Full Stack Developer
           </div>
 
           <h1 className="hero-name">{studentName}</h1>
