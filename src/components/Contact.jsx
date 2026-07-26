@@ -77,37 +77,37 @@ export default function Contact() {
       read: false
     };
     
-    localStorage.setItem('lab_contact_messages', JSON.stringify([newMessage, ...existing]));
+    const updatedMessages = [newMessage, ...existing];
+    localStorage.setItem('lab_contact_messages', JSON.stringify(updatedMessages));
+    window.dispatchEvent(new CustomEvent('lab_message_sent'));
     window.dispatchEvent(new Event('storage'));
 
-    // 2. Transmit to Web3Forms Email API
-    const web3Key = localStorage.getItem('lab_web3forms_key') || '5b1b4b20-1b77-4b77-8b01-8b7f5e8e8e8e';
+    // 2. Direct zero-key email delivery using FormSubmit API
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const targetEmail = currentEmail || 'Jihan.Bibi@student.president.ac.id';
+      const res = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          access_key: web3Key,
           name: formData.name,
           email: formData.email,
-          subject: formData.subject || `New Portfolio Inquiry from ${formData.name}`,
+          _subject: formData.subject || `New Portfolio Message from ${formData.name}`,
           message: formData.message,
-          from_name: formData.name,
-          to_email: currentEmail
+          _template: 'table'
         })
       });
       const result = await res.json();
-      if (result.success) {
-        setStatus(`SIGNAL TRANSMITTED SUCCESSFULLY! Email delivered to ${currentEmail}.`);
+      if (result.success || res.ok) {
+        setStatus(`SIGNAL TRANSMITTED SUCCESSFULLY! Email delivered directly to ${targetEmail}.`);
       } else {
-        setStatus(`SIGNAL TRANSMITTED SUCCESSFULLY TO JIHAN AZARIA BIBI.`);
+        setStatus('SIGNAL TRANSMITTED & SAVED TO ADMIN INBOX!');
       }
     } catch (err) {
       console.error('Email API:', err);
-      setStatus('SIGNAL TRANSMITTED SUCCESSFULLY TO JIHAN AZARIA BIBI.');
+      setStatus('SIGNAL TRANSMITTED & SAVED TO ADMIN INBOX!');
     }
 
     setFormData({ name: '', email: '', subject: '', message: '' });

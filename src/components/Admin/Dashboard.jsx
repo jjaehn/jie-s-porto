@@ -277,10 +277,12 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
       }
     };
 
+    window.addEventListener('lab_message_sent', syncLiveMessages);
     window.addEventListener('storage', syncLiveMessages);
     window.addEventListener('focus', syncLiveMessages);
 
     return () => {
+      window.removeEventListener('lab_message_sent', syncLiveMessages);
       window.removeEventListener('storage', syncLiveMessages);
       window.removeEventListener('focus', syncLiveMessages);
     };
