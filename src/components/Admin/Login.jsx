@@ -7,8 +7,8 @@ export default function Login({ onLoginSuccess, onCancel }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Default laboratory admin credentials
-    if (username === 'admin' && password === 'laboratory2026') {
+    const storedPasscode = localStorage.getItem('lab_admin_passcode') || 'laboratory2026';
+    if (username === 'admin' && password === storedPasscode) {
       onLoginSuccess();
     } else {
       setError('INVALID AUTHENTICATION PROTOCOL.');

@@ -28,7 +28,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
   const [messages, setMessages] = useState([]);
   const [adminProfile, setAdminProfile] = useState({
     name: 'Jihan Azaria Bibi',
-    email: 'jihan.azaria@student.president.ac.id',
+    email: 'Jihan.Bibi@student.president.ac.id',
     avatar: '/ai_researcher_portrait.png',
     role: 'Laboratory Admin'
   });
@@ -507,6 +507,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
         showToast('Password Mismatch', 'New passwords do not match.', 'error');
         return;
       }
+      localStorage.setItem('lab_admin_passcode', profileForm.newPassword);
       showToast('Security Updated', 'Admin passcode updated successfully.');
     }
 

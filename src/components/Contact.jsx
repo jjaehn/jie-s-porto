@@ -9,11 +9,28 @@ export default function Contact() {
   });
   const [status, setStatus] = useState('');
 
+  const [adminProfile] = useState(() => {
+    const saved = localStorage.getItem('lab_admin_profile');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.email) return parsed;
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    return {
+      email: 'Jihan.Bibi@student.president.ac.id'
+    };
+  });
+
+  const currentEmail = adminProfile.email || 'Jihan.Bibi@student.president.ac.id';
+
   const socialLinks = [
     { 
       name: 'Email', 
-      value: 'jihan.azaria@student.president.ac.id', 
-      href: 'mailto:jihan.azaria@student.president.ac.id', 
+      value: currentEmail, 
+      href: `mailto:${currentEmail}`, 
       icon: 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M22 6l-10 7L2 6' 
     },
     { 
