@@ -73,7 +73,8 @@ export default function Contact() {
     const newMessage = {
       ...formData,
       id: Date.now(),
-      date: new Date().toISOString()
+      date: new Date().toISOString(),
+      read: false
     };
     
     localStorage.setItem('lab_contact_messages', JSON.stringify([newMessage, ...existing]));
