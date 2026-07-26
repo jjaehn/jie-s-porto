@@ -153,62 +153,72 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
     }
 
     // 2. Experiences
+    const defaultExp = [
+      {
+        id: 1,
+        category: "Education",
+        date: "2023 - Present",
+        title: "B.S. in Informatics (AI Specialization)",
+        subtitle: "President University",
+        desc: "Specializing in Artificial Intelligence, Neural Networks, Computer Vision, and Web Development. Core coursework: Machine Learning, Deep Learning, Data Structures, Web Systems, Linear Algebra."
+      },
+      {
+        id: 2,
+        category: "Education",
+        date: "2020 - 2023",
+        title: "Senior High School (Science & Mathematics)",
+        subtitle: "Science Honors Track",
+        desc: "Graduated with highest academic distinction. Focused on Advanced Mathematics, Physics, and introductory Python algorithm design."
+      },
+      {
+        id: 3,
+        category: "Experience",
+        date: "2025 - Present",
+        title: "AI & Web Developer (Research Intern)",
+        subtitle: "Artificial Intelligence Laboratory",
+        desc: "Engineering Computer Vision object verification pipelines and full-stack React dashboards. Optimized edge inference latency for embedded camera nodes."
+      },
+      {
+        id: 4,
+        category: "Experience",
+        date: "2024 - 2025",
+        title: "Software & AI Solutions Freelancer",
+        subtitle: "Self-Employed",
+        desc: "Built custom web applications and dataset management pipelines for academic research initiatives and small businesses."
+      },
+      {
+        id: 5,
+        category: "Organizations",
+        date: "2024 - Present",
+        title: "Active Member & Coordinator",
+        subtitle: "PUMA Informatics (President University)",
+        desc: "Organizing tech workshops, AI seminars, programming hackathons, and community peer coding sessions for Informatics students."
+      },
+      {
+        id: 6,
+        category: "Certifications",
+        date: "2025",
+        title: "TensorFlow Developer Certificate",
+        subtitle: "Google",
+        desc: "Validated expertise in building, training, and deploying deep neural network models for computer vision and NLP."
+      }
+    ];
+
     const storedExp = localStorage.getItem('lab_experiences');
     if (storedExp) {
       try {
-        setExperiences(JSON.parse(storedExp));
-      } catch (e) { console.error(e); }
-    } else {
-      const defaultExp = [
-        {
-          id: 1,
-          category: "Education",
-          date: "2023 - Present",
-          title: "B.S. in Informatics (AI Specialization)",
-          subtitle: "President University",
-          desc: "Specializing in Artificial Intelligence, Neural Networks, Computer Vision, and Web Development. Core coursework: Machine Learning, Deep Learning, Data Structures, Web Systems, Linear Algebra."
-        },
-        {
-          id: 2,
-          category: "Education",
-          date: "2020 - 2023",
-          title: "Senior High School (Science & Mathematics)",
-          subtitle: "Science Honors Track",
-          desc: "Graduated with highest academic distinction. Focused on Advanced Mathematics, Physics, and introductory Python algorithm design."
-        },
-        {
-          id: 3,
-          category: "Experience",
-          date: "2025 - Present",
-          title: "AI & Web Developer (Research Intern)",
-          subtitle: "Artificial Intelligence Laboratory",
-          desc: "Engineering Computer Vision object verification pipelines and full-stack React dashboards. Optimized edge inference latency for embedded camera nodes."
-        },
-        {
-          id: 4,
-          category: "Experience",
-          date: "2024 - 2025",
-          title: "Software & AI Solutions Freelancer",
-          subtitle: "Self-Employed",
-          desc: "Built custom web applications and dataset management pipelines for academic research initiatives and small businesses."
-        },
-        {
-          id: 5,
-          category: "Organizations",
-          date: "2024 - Present",
-          title: "Active Member & Coordinator",
-          subtitle: "PUMA Informatics (President University)",
-          desc: "Organizing tech workshops, AI seminars, programming hackathons, and community peer coding sessions for Informatics students."
-        },
-        {
-          id: 6,
-          category: "Certifications",
-          date: "2025",
-          title: "TensorFlow Developer Certificate",
-          subtitle: "Google",
-          desc: "Validated expertise in building, training, and deploying deep neural network models for computer vision and NLP."
+        const parsed = JSON.parse(storedExp);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setExperiences(parsed);
+        } else {
+          setExperiences(defaultExp);
+          localStorage.setItem('lab_experiences', JSON.stringify(defaultExp));
         }
-      ];
+      } catch (e) { 
+        console.error(e); 
+        setExperiences(defaultExp);
+      }
+    } else {
       setExperiences(defaultExp);
       localStorage.setItem('lab_experiences', JSON.stringify(defaultExp));
     }
@@ -953,49 +963,60 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
             </div>
 
             {/* Timeline List View */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-              {experiences.map((exp, index) => (
-                <div key={exp.id || index} style={{ ...cardStyle, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-                  <div style={{ flex: 1, minWidth: '260px' }}>
-                    <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', marginBottom: '0.4rem' }}>
-                      <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#E0A96D', backgroundColor: 'rgba(140, 29, 54, 0.3)', padding: '0.2rem 0.6rem', borderRadius: '10px' }}>
-                        {exp.category}
-                      </span>
-                      <span style={{ fontSize: '0.8rem', color: '#E0A96D', fontWeight: 600 }}>{exp.date}</span>
+            {!Array.isArray(experiences) || experiences.length === 0 ? (
+              <div style={{ ...cardStyle, textAlign: 'center', padding: '4rem 2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Briefcase size={48} color="#E0A96D" style={{ marginBottom: '1rem' }} />
+                <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.4rem', color: '#F9F6F0', marginBottom: '0.5rem' }}>No Experience Items Found</h3>
+                <p style={{ color: '#B3A4A9', fontSize: '0.9rem', marginBottom: '1.5rem' }}>Your timeline has no recorded experience or education milestones yet.</p>
+                <button onClick={handleOpenAddExperience} className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Plus size={16} /> Add First Experience Item
+                </button>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                {experiences.map((exp, index) => (
+                  <div key={exp.id || index} style={{ ...cardStyle, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+                    <div style={{ flex: 1, minWidth: '260px' }}>
+                      <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', marginBottom: '0.4rem' }}>
+                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#E0A96D', backgroundColor: 'rgba(140, 29, 54, 0.3)', padding: '0.2rem 0.6rem', borderRadius: '10px' }}>
+                          {exp.category}
+                        </span>
+                        <span style={{ fontSize: '0.8rem', color: '#E0A96D', fontWeight: 600 }}>{exp.date}</span>
+                      </div>
+                      <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.25rem', fontWeight: 700, color: '#F9F6F0', marginBottom: '0.2rem' }}>{exp.title}</h3>
+                      <div style={{ fontSize: '0.92rem', color: '#D4AF37', fontWeight: 600, marginBottom: '0.6rem' }}>{exp.subtitle}</div>
+                      <p style={{ fontSize: '0.88rem', color: '#B3A4A9', lineHeight: 1.5 }}>{exp.desc}</p>
                     </div>
-                    <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.25rem', fontWeight: 700, color: '#F9F6F0', marginBottom: '0.2rem' }}>{exp.title}</h3>
-                    <div style={{ fontSize: '0.92rem', color: '#D4AF37', fontWeight: 600, marginBottom: '0.6rem' }}>{exp.subtitle}</div>
-                    <p style={{ fontSize: '0.88rem', color: '#B3A4A9', lineHeight: 1.5 }}>{exp.desc}</p>
-                  </div>
 
-                  {/* Actions & Reordering */}
-                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                    <button 
-                      onClick={() => moveExperience(index, -1)} 
-                      disabled={index === 0}
-                      style={{ padding: '0.4rem 0.6rem', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(224,169,109,0.2)', color: '#F9F6F0', cursor: index === 0 ? 'not-allowed' : 'pointer', opacity: index === 0 ? 0.3 : 1, display: 'flex', alignItems: 'center' }}
-                      title="Move Up"
-                    >
-                      <ChevronUp size={16} />
-                    </button>
-                    <button 
-                      onClick={() => moveExperience(index, 1)} 
-                      disabled={index === experiences.length - 1}
-                      style={{ padding: '0.4rem 0.6rem', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(224,169,109,0.2)', color: '#F9F6F0', cursor: index === experiences.length - 1 ? 'not-allowed' : 'pointer', opacity: index === experiences.length - 1 ? 0.3 : 1, display: 'flex', alignItems: 'center' }}
-                      title="Move Down"
-                    >
-                      <ChevronDown size={16} />
-                    </button>
-                    <button onClick={() => handleOpenEditExperience(exp)} className="btn btn-secondary" style={{ padding: '0.5rem 0.8rem', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Pencil size={14} /> Edit
-                    </button>
-                    <button onClick={() => handleDeleteExperience(exp)} className="btn btn-secondary" style={{ padding: '0.5rem 0.8rem', fontSize: '0.82rem', borderColor: 'rgba(140, 29, 54, 0.5)', color: '#E0A899', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Trash2 size={14} /> Delete
-                    </button>
+                    {/* Actions & Reordering */}
+                    <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                      <button 
+                        onClick={() => moveExperience(index, -1)} 
+                        disabled={index === 0}
+                        style={{ padding: '0.4rem 0.6rem', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(224,169,109,0.2)', color: '#F9F6F0', cursor: index === 0 ? 'not-allowed' : 'pointer', opacity: index === 0 ? 0.3 : 1, display: 'flex', alignItems: 'center' }}
+                        title="Move Up"
+                      >
+                        <ChevronUp size={16} />
+                      </button>
+                      <button 
+                        onClick={() => moveExperience(index, 1)} 
+                        disabled={index === experiences.length - 1}
+                        style={{ padding: '0.4rem 0.6rem', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(224,169,109,0.2)', color: '#F9F6F0', cursor: index === experiences.length - 1 ? 'not-allowed' : 'pointer', opacity: index === experiences.length - 1 ? 0.3 : 1, display: 'flex', alignItems: 'center' }}
+                        title="Move Down"
+                      >
+                        <ChevronDown size={16} />
+                      </button>
+                      <button onClick={() => handleOpenEditExperience(exp)} className="btn btn-secondary" style={{ padding: '0.5rem 0.8rem', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <Pencil size={14} /> Edit
+                      </button>
+                      <button onClick={() => handleDeleteExperience(exp)} className="btn btn-secondary" style={{ padding: '0.5rem 0.8rem', fontSize: '0.82rem', borderColor: 'rgba(140, 29, 54, 0.5)', color: '#E0A899', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <Trash2 size={14} /> Delete
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 

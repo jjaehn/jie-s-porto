@@ -94,7 +94,8 @@ export default function Resume() {
     const saved = localStorage.getItem('lab_experiences');
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
       } catch (e) {
         console.error(e);
       }
@@ -189,7 +190,7 @@ export default function Resume() {
 
         {/* Direct Timeline View (No category filter buttons) */}
         <div style={timelineWrapper}>
-          {resumeData.map((item, idx) => (
+          {(Array.isArray(resumeData) ? resumeData : []).map((item, idx) => (
             <div 
               key={idx} 
               style={{ ...timelineItem, cursor: 'pointer' }}
