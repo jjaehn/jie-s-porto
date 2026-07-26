@@ -503,30 +503,36 @@ export default function Portfolio({ onCaseStudySelect }) {
                   ))}
                 </div>
 
-                {/* Actions */}
+                {/* Actions (Only render buttons if URL / Case Study is present) */}
                 <div style={btnContainer}>
-                  <a 
-                    href={proj.github} 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    style={actionLink}
-                  >
-                    GitHub
-                  </a>
-                  <a 
-                    href={proj.demo} 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    style={actionLink}
-                  >
-                    Live Demo
-                  </a>
-                  <button 
-                    onClick={() => onCaseStudySelect(proj)}
-                    style={{ ...actionLink, cursor: 'pointer', backgroundColor: 'rgba(140, 29, 54, 0.3)' }}
-                  >
-                    Case Study
-                  </button>
+                  {proj.github && proj.github.trim() !== '' && (
+                    <a 
+                      href={proj.github} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      style={actionLink}
+                    >
+                      GitHub
+                    </a>
+                  )}
+                  {proj.demo && proj.demo.trim() !== '' && (
+                    <a 
+                      href={proj.demo} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      style={actionLink}
+                    >
+                      Live Demo
+                    </a>
+                  )}
+                  {((proj.caseStudy && proj.caseStudy.trim() !== '') || (proj.fullDesc && proj.fullDesc.trim() !== '')) && (
+                    <button 
+                      onClick={() => onCaseStudySelect(proj)}
+                      style={{ ...actionLink, cursor: 'pointer', backgroundColor: 'rgba(140, 29, 54, 0.3)' }}
+                    >
+                      Case Study
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
