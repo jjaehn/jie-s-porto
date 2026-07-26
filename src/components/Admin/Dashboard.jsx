@@ -508,7 +508,8 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
         return;
       }
       localStorage.setItem('lab_admin_passcode', profileForm.newPassword);
-      showToast('Security Updated', 'Admin passcode updated successfully.');
+      showToast('Security Passcode Updated', `New passcode saved! Use this passcode or default 'laboratory2026' to log in.`);
+      setProfileForm(prev => ({ ...prev, newPassword: '', confirmPassword: '' }));
     }
 
     const updated = {
