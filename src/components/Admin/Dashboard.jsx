@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { 
   LayoutDashboard, 
   FolderKanban, 
@@ -16,7 +16,8 @@ import {
   ChevronUp,
   ChevronDown,
   Eye,
-  Send
+  Send,
+  RefreshCw
 } from 'lucide-react';
 
 export default function Dashboard({ onLogout, globalState, updateGlobalState }) {
@@ -287,6 +288,31 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
       window.removeEventListener('focus', syncLiveMessages);
     };
   }, []);
+
+  const reloadMessagesFromStorage = useCallback(() => {
+    const liveMsgs = localStorage.getItem('lab_contact_messages');
+    if (liveMsgs) {
+      try {
+        const parsed = JSON.parse(liveMsgs);
+        if (Array.isArray(parsed)) {
+          setMessages(parsed);
+          showToast('Sync Complete', 'Inbox messages reloaded from memory.');
+        }
+      } catch (e) { console.error(e); }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (activeTab === 'messages') {
+      const liveMsgs = localStorage.getItem('lab_contact_messages');
+      if (liveMsgs) {
+        try {
+          const parsed = JSON.parse(liveMsgs);
+          if (Array.isArray(parsed)) setMessages(parsed);
+        } catch (e) { console.error(e); }
+      }
+    }
+  }, [activeTab]);
 
   // Save Handlers
   const saveProjects = (newProjects) => {
@@ -1060,6 +1086,14 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
                 <h2 style={pageHeader}>Contact Messages Inbox</h2>
                 <p style={{ fontSize: '0.9rem', color: '#B3A4A9' }}>Manage communications submitted through your portfolio contact form.</p>
               </div>
+              <button 
+                onClick={reloadMessagesFromStorage} 
+                className="btn btn-secondary" 
+                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+                title="Sync and reload latest messages from memory"
+              >
+                <RefreshCw size={16} /> Sync Inbox
+              </button>
             </div>
 
             {/* Filter & Search Controls */}
