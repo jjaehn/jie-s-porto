@@ -130,14 +130,12 @@ export default function Skills() {
     { name: "Blender", category: "Tools", level: "Intermediate", desc: "3D computer graphics software for modeling, rendering, and visual assets.", icon: "🧊" }
   ];
 
-  const categories = ["All", "AI Tools", "AI Frameworks", "Frontend", "Backend", "Tools"];
+  const categories = ["AI Tools", "AI Frameworks", "Frontend", "Backend", "Tools"];
 
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("AI Tools");
   const [selectedSkill, setSelectedSkill] = useState(null);
 
-  const filteredSkills = activeCategory === "All" 
-    ? allSkills 
-    : allSkills.filter(s => s.category === activeCategory);
+  const filteredSkills = allSkills.filter(s => s.category === activeCategory);
 
   const honeycombRows = createHoneycombRows(filteredSkills);
 
