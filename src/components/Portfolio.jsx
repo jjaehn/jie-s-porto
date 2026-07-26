@@ -482,9 +482,20 @@ export default function Portfolio({ onCaseStudySelect }) {
               style={cardStyle(proj.span || "span 6")}
             >
               {/* Interactive cover */}
-              <div style={previewContainer}>
+              <div style={{ ...previewContainer, height: proj.image ? '240px' : '190px', padding: proj.image ? '0.5rem' : 0 }}>
                 {proj.image ? (
-                  <img src={proj.image} alt={proj.title} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+                  <img 
+                    src={proj.image} 
+                    alt={proj.title} 
+                    style={{ 
+                      width: '100%', 
+                      height: '100%', 
+                      objectFit: 'contain', 
+                      objectPosition: 'center',
+                      borderRadius: '10px',
+                      backgroundColor: 'rgba(12, 4, 8, 0.9)'
+                    }} 
+                  />
                 ) : (
                   renderPreviewGraphic(proj.previewType)
                 )}
