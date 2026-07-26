@@ -150,8 +150,8 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
           title: "Facial Emotion Recognition",
           category: "Computer Vision",
           tech: ["Python", "OpenCV", "TensorFlow", "Keras"],
-          desc: "Analyzes video streams to classify 7 emotion states, tracking engagement metrics in user-testing laboratory experiments.",
-          fullDesc: "Trained CNN on FER2013 with 468 landmark mesh points. Streamed real-time emotion telemetry via WebSocket.",
+          desc: "Analyzes video streams to classify 7 emotion states, tracking engagement metrics in user testing laboratory experiments.",
+          fullDesc: "Trained CNN on FER2013 with 468 landmark mesh points. Streamed real time emotion telemetry via WebSocket.",
           github: "https://github.com",
           demo: "https://demo.com",
           figma: "",
@@ -163,7 +163,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
         },
         {
           id: "pm-system",
-          title: "AI-Driven PM System",
+          title: "AI Driven PM System",
           category: "Web Applications",
           tech: ["React", "Firebase", "Node.js", "MySQL"],
           desc: "Project management system predicting task bottlenecks and suggesting timeline changes based on historic developer speed.",
@@ -181,8 +181,8 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
           id: "ai-chatbot",
           title: "Neural Lab Assistant (RAG)",
           category: "AI Projects",
-          tech: ["Python", "LangChain", "LLaMA-3", "ChromaDB"],
-          desc: "Retrieval-Augmented Chatbot parsing laboratory documentation files and serving immediate configuration procedures.",
+          tech: ["Python", "LangChain", "LLaMA 3", "ChromaDB"],
+          desc: "Retrieval Augmented Chatbot parsing laboratory documentation files and serving immediate configuration procedures.",
           fullDesc: "Ingested 400 pages of lab user guides into Chroma vector database. Used LangChain to resolve queries locally.",
           github: "https://github.com",
           demo: "https://demo.com",
@@ -203,7 +203,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
       {
         id: 1,
         category: "Education",
-        date: "2023 - Present",
+        date: "2023 / Present",
         title: "B.S. in Informatics (AI Specialization)",
         subtitle: "President University",
         desc: "Specializing in Artificial Intelligence, Neural Networks, Computer Vision, and Web Development. Core coursework: Machine Learning, Deep Learning, Data Structures, Web Systems, Linear Algebra."
@@ -211,7 +211,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
       {
         id: 2,
         category: "Education",
-        date: "2020 - 2023",
+        date: "2020 / 2023",
         title: "Senior High School (Science & Mathematics)",
         subtitle: "Science Honors Track",
         desc: "Graduated with highest academic distinction. Focused on Advanced Mathematics, Physics, and introductory Python algorithm design."
@@ -219,23 +219,23 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
       {
         id: 3,
         category: "Experience",
-        date: "2025 - Present",
+        date: "2025 / Present",
         title: "AI & Web Developer (Research Intern)",
         subtitle: "Artificial Intelligence Laboratory",
-        desc: "Engineering Computer Vision object verification pipelines and full-stack React dashboards. Optimized edge inference latency for embedded camera nodes."
+        desc: "Engineering Computer Vision object verification pipelines and full stack React dashboards. Optimized edge inference latency for embedded camera nodes."
       },
       {
         id: 4,
         category: "Experience",
-        date: "2024 - 2025",
+        date: "2024 / 2025",
         title: "Software & AI Solutions Freelancer",
-        subtitle: "Self-Employed",
+        subtitle: "Self Employed",
         desc: "Built custom web applications and dataset management pipelines for academic research initiatives and small businesses."
       },
       {
         id: 5,
         category: "Organizations",
-        date: "2024 - Present",
+        date: "2024 / Present",
         title: "Active Member & Coordinator",
         subtitle: "PUMA Informatics (President University)",
         desc: "Organizing tech workshops, AI seminars, programming hackathons, and community peer coding sessions for Informatics students."

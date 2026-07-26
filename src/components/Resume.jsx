@@ -6,42 +6,42 @@ export default function Resume() {
   const defaultResumeData = [
     {
       category: "Education",
-      date: "2023 - Present",
+      date: "2023 / Present",
       title: "B.S. in Informatics (AI Specialization)",
       subtitle: "President University",
       desc: "Specializing in Artificial Intelligence, Neural Networks, Computer Vision, and Web Development. Core coursework: Machine Learning, Deep Learning, Data Structures, Web Systems, Linear Algebra."
     },
     {
       category: "Education",
-      date: "2020 - 2023",
+      date: "2020 / 2023",
       title: "Senior High School (Science & Mathematics)",
       subtitle: "Science Honors Track",
       desc: "Graduated with highest academic distinction. Focused on Advanced Mathematics, Physics, and introductory Python algorithm design."
     },
     {
       category: "Experience",
-      date: "2025 - Present",
+      date: "2025 / Present",
       title: "AI & Web Developer (Research Intern)",
       subtitle: "Artificial Intelligence Laboratory",
-      desc: "Engineering Computer Vision object verification pipelines and full-stack React dashboards. Optimized edge inference latency for embedded camera nodes."
+      desc: "Engineering Computer Vision object verification pipelines and full stack React dashboards. Optimized edge inference latency for embedded camera nodes."
     },
     {
       category: "Experience",
-      date: "2024 - 2025",
+      date: "2024 / 2025",
       title: "Software & AI Solutions Freelancer",
-      subtitle: "Self-Employed",
+      subtitle: "Self Employed",
       desc: "Built custom web applications and dataset management pipelines for academic research initiatives and small businesses."
     },
     {
       category: "Organizations",
-      date: "2024 - Present",
+      date: "2024 / Present",
       title: "Active Member & Coordinator",
       subtitle: "PUMA Informatics (President University)",
       desc: "Organizing tech workshops, AI seminars, programming hackathons, and community peer coding sessions for Informatics students."
     },
     {
       category: "Organizations",
-      date: "2024 - Present",
+      date: "2024 / Present",
       title: "Core Member",
       subtitle: "AI Student Collective",
       desc: "Leading weekly paper review circles focusing on Large Language Models, Computer Vision architectures, and ethical AI development."
@@ -58,18 +58,18 @@ export default function Resume() {
       date: "2025",
       title: "Deep Learning Specialization",
       subtitle: "DeepLearning.AI",
-      desc: "Mastered multi-layer neural architectures, hyperparameter tuning, CNNs, and Sequence Models."
+      desc: "Mastered multi layer neural architectures, hyperparameter tuning, CNNs, and Sequence Models."
     },
     {
       category: "Certifications",
       date: "2024",
       title: "OpenCV Computer Vision Masterclass",
       subtitle: "OpenCV Association",
-      desc: "Certified in image processing, matrix transformations, spatial feature extraction, and real-time video streaming."
+      desc: "Certified in image processing, matrix transformations, spatial feature extraction, and real time video streaming."
     },
     {
       category: "Achievements",
-      date: "2025 - 2026",
+      date: "2025 / 2026",
       title: "President University Academic Honor List",
       subtitle: "President University",
       desc: "Awarded Dean's Honor Distinction for maintaining top GPA in the Faculty of Computer Science & Informatics."
@@ -77,16 +77,16 @@ export default function Resume() {
     {
       category: "Achievements",
       date: "2025",
-      title: "1st Place - National Vision & AI Hackathon",
+      title: "1st Place | National Vision & AI Hackathon",
       subtitle: "National Tech Alliance",
-      desc: "Won 1st place for designing an on-device assistive currency identification model running under 48 hours."
+      desc: "Won 1st place for designing an on device assistive currency identification model running under 48 hours."
     },
     {
       category: "Achievements",
       date: "2024",
-      title: "Finalist - University Tech Innovation Award",
+      title: "Finalist | University Tech Innovation Award",
       subtitle: "President University AI Showcase",
-      desc: "Selected as top finalist for presenting an AI-driven smart safety and monitoring prototype."
+      desc: "Selected as top finalist for presenting an AI driven smart safety and monitoring prototype."
     }
   ];
 
