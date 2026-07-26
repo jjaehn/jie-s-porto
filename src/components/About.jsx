@@ -146,7 +146,7 @@ export default function About() {
               </p>
 
               <p style={{ ...bioText, marginBottom: '2rem' }}>
-                My objective is to bridge computational intelligence with user centric software design—building intelligent systems, computer vision tools, and modern web applications that deliver practical value and impactful real world solutions.
+                My objective is to bridge computational intelligence with user centric software design by building intelligent systems, computer vision tools, and modern web applications that deliver practical value and impactful real world solutions.
               </p>
             </div>
 
