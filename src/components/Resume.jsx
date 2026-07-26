@@ -251,8 +251,8 @@ export default function Resume() {
 
             {/* Photo / Certificate Image Preview */}
             {selectedExperience.image && (
-              <div style={{ width: '100%', maxHeight: '320px', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(224, 169, 109, 0.3)', marginBottom: '1.5rem', backgroundColor: '#070305', padding: '0.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src={selectedExperience.image} alt={selectedExperience.title} style={{ width: '100%', maxHeight: '300px', objectFit: 'contain', borderRadius: '10px' }} />
+              <div style={{ width: '100%', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(224, 169, 109, 0.3)', marginBottom: '1.5rem', backgroundColor: '#070305' }}>
+                <img src={selectedExperience.image} alt={selectedExperience.title} style={{ width: '100%', height: 'auto', display: 'block', maxHeight: '420px', objectFit: 'cover' }} />
               </div>
             )}
 
