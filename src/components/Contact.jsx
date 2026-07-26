@@ -68,7 +68,7 @@ export default function Contact() {
 
     setStatus('INITIALIZING NEURAL TRANSMISSION...');
 
-    // 1. Always save to local storage for Admin Inbox
+    // 1. Save to local storage for instant offline fallback
     const existing = JSON.parse(localStorage.getItem('lab_contact_messages') || '[]');
     const newMessage = {
       ...formData,
@@ -82,7 +82,33 @@ export default function Contact() {
     window.dispatchEvent(new CustomEvent('lab_message_sent'));
     window.dispatchEvent(new Event('storage'));
 
-    // 2. Direct zero-key email delivery using FormSubmit API
+    // 2. Save to Supabase Cloud Database (Global sync across all devices)
+    const SUPABASE_URL = 'https://ooeitofaqqxkynaeskrc.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9vZWl0b2ZhcXF4a3luYWVza3JjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUwNTY4OTksImV4cCI6MjEwMDYzMjg5OX0.cza4NlVirASSRo7mRh8D2HEGCSgiWoAa3rDRaq3tK4A';
+
+    try {
+      await fetch(`${SUPABASE_URL}/rest/v1/messages`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON,
+          'Authorization': `Bearer ${SUPABASE_ANON}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `New Portfolio Message from ${formData.name}`,
+          message: formData.message,
+          date: new Date().toISOString(),
+          read: false
+        })
+      });
+    } catch (dbErr) {
+      console.error('Supabase DB Sync Error:', dbErr);
+    }
+
+    // 3. Direct zero-key email delivery using FormSubmit API
     try {
       const targetEmail = currentEmail || 'Jihan.Bibi@student.president.ac.id';
       const res = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
@@ -101,7 +127,7 @@ export default function Contact() {
       });
       const result = await res.json();
       if (result.success || res.ok) {
-        setStatus(`SIGNAL TRANSMITTED SUCCESSFULLY! Email delivered directly to ${targetEmail}.`);
+        setStatus(`SIGNAL TRANSMITTED SUCCESSFULLY! Delivered to Email & Cloud Inbox.`);
       } else {
         setStatus('SIGNAL TRANSMITTED & SAVED TO ADMIN INBOX!');
       }

@@ -228,36 +228,17 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
       localStorage.setItem('lab_experiences', JSON.stringify(defaultExp));
     }
 
-    // 3. Messages
+    // 3. Messages & Supabase Cloud Sync
     const storedMsgs = localStorage.getItem('lab_contact_messages');
     if (storedMsgs) {
       try {
-        setMessages(JSON.parse(storedMsgs));
+        const parsed = JSON.parse(storedMsgs);
+        if (Array.isArray(parsed)) setMessages(parsed);
       } catch (e) { console.error(e); }
-    } else {
-      const sampleMsgs = [
-        {
-          id: 101,
-          name: "Dr. Jonathan Hayes",
-          email: "j.hayes@techinstitute.org",
-          subject: "AI Research Collaboration Proposal",
-          message: "Greetings Jihan, we reviewed your CV & Edge AI projects. We would love to invite you for a guest presentation on your face verification lockbox model.",
-          date: new Date(Date.now() - 86400000 * 2).toISOString(),
-          read: false
-        },
-        {
-          id: 102,
-          name: "Elena Rostova",
-          email: "elena@innovateweb.io",
-          subject: "Full-Stack AI Project Discussion",
-          message: "Hi Jihan! Impressive portfolio. We are looking for an AI/React developer to build an intelligent dashboard. Are you available for freelance projects?",
-          date: new Date(Date.now() - 86400000 * 5).toISOString(),
-          read: true
-        }
-      ];
-      setMessages(sampleMsgs);
-      localStorage.setItem('lab_contact_messages', JSON.stringify(sampleMsgs));
     }
+
+    // Initial Cloud Fetch
+    fetchCloudMessages(false);
 
     // 4. Admin Profile
     const storedProfile = localStorage.getItem('lab_admin_profile');
@@ -267,15 +248,9 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
       } catch (e) { console.error(e); }
     }
 
-    // Live listener for new messages sent in other tabs/windows
+    // Live listener for new messages
     const syncLiveMessages = () => {
-      const liveMsgs = localStorage.getItem('lab_contact_messages');
-      if (liveMsgs) {
-        try {
-          const parsed = JSON.parse(liveMsgs);
-          if (Array.isArray(parsed)) setMessages(parsed);
-        } catch (e) { console.error(e); }
-      }
+      fetchCloudMessages(false);
     };
 
     window.addEventListener('lab_message_sent', syncLiveMessages);
@@ -289,30 +264,48 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
     };
   }, []);
 
-  const reloadMessagesFromStorage = useCallback(() => {
-    const liveMsgs = localStorage.getItem('lab_contact_messages');
-    if (liveMsgs) {
-      try {
-        const parsed = JSON.parse(liveMsgs);
-        if (Array.isArray(parsed)) {
-          setMessages(parsed);
-          showToast('Sync Complete', 'Inbox messages reloaded from memory.');
+  const SUPABASE_URL = 'https://ooeitofaqqxkynaeskrc.supabase.co';
+  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9vZWl0b2ZhcXF4a3luYWVza3JjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUwNTY4OTksImV4cCI6MjEwMDYzMjg5OX0.cza4NlVirASSRo7mRh8D2HEGCSgiWoAa3rDRaq3tK4A';
+
+  const fetchCloudMessages = useCallback(async (showNotification = false) => {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/messages?select=*&order=created_at.desc`, {
+        headers: {
+          'apikey': SUPABASE_ANON,
+          'Authorization': `Bearer ${SUPABASE_ANON}`
         }
+      });
+      if (res.ok) {
+        const cloudMsgs = await res.json();
+        if (Array.isArray(cloudMsgs) && cloudMsgs.length > 0) {
+          setMessages(cloudMsgs);
+          localStorage.setItem('lab_contact_messages', JSON.stringify(cloudMsgs));
+          if (showNotification) showToast('Cloud Sync Complete', `Loaded ${cloudMsgs.length} messages from Supabase Cloud DB.`);
+          return;
+        }
+      }
+    } catch (e) {
+      console.error('Fetch Cloud Messages error:', e);
+    }
+
+    const storedMsgs = localStorage.getItem('lab_contact_messages');
+    if (storedMsgs) {
+      try {
+        const parsed = JSON.parse(storedMsgs);
+        if (Array.isArray(parsed)) setMessages(parsed);
       } catch (e) { console.error(e); }
     }
   }, []);
 
+  const reloadMessagesFromStorage = useCallback(() => {
+    fetchCloudMessages(true);
+  }, [fetchCloudMessages]);
+
   useEffect(() => {
     if (activeTab === 'messages') {
-      const liveMsgs = localStorage.getItem('lab_contact_messages');
-      if (liveMsgs) {
-        try {
-          const parsed = JSON.parse(liveMsgs);
-          if (Array.isArray(parsed)) setMessages(parsed);
-        } catch (e) { console.error(e); }
-      }
+      fetchCloudMessages(false);
     }
-  }, [activeTab]);
+  }, [activeTab, fetchCloudMessages]);
 
   // Save Handlers
   const saveProjects = (newProjects) => {
