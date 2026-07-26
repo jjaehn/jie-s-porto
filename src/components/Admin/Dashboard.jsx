@@ -17,11 +17,52 @@ import {
   ChevronDown,
   Eye,
   Send,
-  RefreshCw
+  RefreshCw,
+  Upload,
+  X,
+  Image as ImageIcon
 } from 'lucide-react';
 
 export default function Dashboard({ onLogout, globalState, updateGlobalState }) {
   const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'projects' | 'experience' | 'messages' | 'profile'
+
+  // Image Upload helper with browser-side compression
+  const handleFileUpload = (file, callback) => {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const MAX_WIDTH = 1000;
+        const MAX_HEIGHT = 1000;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width *= MAX_HEIGHT / height;
+            height = MAX_HEIGHT;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+        callback(dataUrl);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
   
   // State Collections
   const [projects, setProjects] = useState([]);
@@ -1231,14 +1272,39 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#F9F6F0', marginBottom: '0.4rem' }}>Avatar Image Path / URL</label>
-                <input
-                  type="text"
-                  value={profileForm.avatar}
-                  onChange={(e) => setProfileForm({ ...profileForm, avatar: e.target.value })}
-                  style={fieldInputStyle}
-                  placeholder="e.g., /ai_researcher_portrait.png"
-                />
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#F9F6F0', marginBottom: '0.4rem' }}>Avatar Profile Photo</label>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                  <label style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.6rem',
+                    padding: '0.85rem 1.2rem',
+                    borderRadius: '10px',
+                    border: '2px dashed rgba(224, 169, 109, 0.35)',
+                    backgroundColor: 'rgba(22, 7, 12, 0.6)',
+                    color: '#E0A96D',
+                    cursor: 'pointer',
+                    fontSize: '0.88rem',
+                    fontWeight: 600,
+                    transition: 'all 0.3s ease'
+                  }}>
+                    <Upload size={18} />
+                    <span>Upload Avatar Photo from Device</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      style={{ display: 'none' }}
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files[0]) {
+                          handleFileUpload(e.target.files[0], (dataUrl) => {
+                            setProfileForm(prev => ({ ...prev, avatar: dataUrl }));
+                          });
+                        }
+                      }}
+                    />
+                  </label>
+                </div>
               </div>
 
               <div>
@@ -1401,19 +1467,72 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#F9F6F0', marginBottom: '0.3rem' }}>Project Cover Image URL</label>
-                <input
-                  type="text"
-                  placeholder="e.g. https://... or /ai_researcher_portrait.png"
-                  value={projectModal.data.image || ''}
-                  onChange={(e) => setProjectModal({ ...projectModal, data: { ...projectModal.data, image: e.target.value } })}
-                  style={fieldInputStyle}
-                />
-                {projectModal.data.image && (
-                  <div style={{ marginTop: '0.6rem', width: '100%', maxHeight: '160px', borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(224, 169, 109, 0.3)' }}>
-                    <img src={projectModal.data.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
-                )}
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#F9F6F0', marginBottom: '0.4rem' }}>
+                  Project Cover Image
+                </label>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                  <label style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.6rem',
+                    padding: '0.85rem 1.2rem',
+                    borderRadius: '10px',
+                    border: '2px dashed rgba(224, 169, 109, 0.35)',
+                    backgroundColor: 'rgba(22, 7, 12, 0.6)',
+                    color: '#E0A96D',
+                    cursor: 'pointer',
+                    fontSize: '0.88rem',
+                    fontWeight: 600,
+                    transition: 'all 0.3s ease'
+                  }}>
+                    <Upload size={18} />
+                    <span>Upload Cover Image from Device</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      style={{ display: 'none' }}
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files[0]) {
+                          handleFileUpload(e.target.files[0], (dataUrl) => {
+                            setProjectModal(prev => ({
+                              ...prev,
+                              data: { ...prev.data, image: dataUrl }
+                            }));
+                          });
+                        }
+                      }}
+                    />
+                  </label>
+
+                  {projectModal.data.image && (
+                    <div style={{ position: 'relative', width: '100%', maxHeight: '180px', borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(224, 169, 109, 0.3)', backgroundColor: '#090306' }}>
+                      <img src={projectModal.data.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <button
+                        type="button"
+                        onClick={() => setProjectModal(prev => ({ ...prev, data: { ...prev.data, image: '' } }))}
+                        style={{
+                          position: 'absolute',
+                          top: '8px',
+                          right: '8px',
+                          background: 'rgba(140, 29, 54, 0.85)',
+                          color: '#FFF',
+                          border: 'none',
+                          borderRadius: '50%',
+                          width: '26px',
+                          height: '26px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer'
+                        }}
+                        title="Remove Image"
+                      >
+                        <X size={14} />
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Status & Featured Toggles */}
@@ -1523,19 +1642,72 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#F9F6F0', marginBottom: '0.3rem' }}>Photo / Certificate Image URL</label>
-                <input
-                  type="text"
-                  placeholder="e.g. https://... or /ai_researcher_portrait.png"
-                  value={experienceModal.data.image || ''}
-                  onChange={(e) => setExperienceModal({ ...experienceModal, data: { ...experienceModal.data, image: e.target.value } })}
-                  style={fieldInputStyle}
-                />
-                {experienceModal.data.image && (
-                  <div style={{ marginTop: '0.6rem', width: '100%', maxHeight: '150px', borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(224, 169, 109, 0.3)' }}>
-                    <img src={experienceModal.data.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
-                )}
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#F9F6F0', marginBottom: '0.4rem' }}>
+                  Photo / Certificate Image
+                </label>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                  <label style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.6rem',
+                    padding: '0.85rem 1.2rem',
+                    borderRadius: '10px',
+                    border: '2px dashed rgba(224, 169, 109, 0.35)',
+                    backgroundColor: 'rgba(22, 7, 12, 0.6)',
+                    color: '#E0A96D',
+                    cursor: 'pointer',
+                    fontSize: '0.88rem',
+                    fontWeight: 600,
+                    transition: 'all 0.3s ease'
+                  }}>
+                    <Upload size={18} />
+                    <span>Upload Photo / Certificate from Device</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      style={{ display: 'none' }}
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files[0]) {
+                          handleFileUpload(e.target.files[0], (dataUrl) => {
+                            setExperienceModal(prev => ({
+                              ...prev,
+                              data: { ...prev.data, image: dataUrl }
+                            }));
+                          });
+                        }
+                      }}
+                    />
+                  </label>
+
+                  {experienceModal.data.image && (
+                    <div style={{ position: 'relative', width: '100%', maxHeight: '180px', borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(224, 169, 109, 0.3)', backgroundColor: '#090306' }}>
+                      <img src={experienceModal.data.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <button
+                        type="button"
+                        onClick={() => setExperienceModal(prev => ({ ...prev, data: { ...prev.data, image: '' } }))}
+                        style={{
+                          position: 'absolute',
+                          top: '8px',
+                          right: '8px',
+                          background: 'rgba(140, 29, 54, 0.85)',
+                          color: '#FFF',
+                          border: 'none',
+                          borderRadius: '50%',
+                          width: '26px',
+                          height: '26px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer'
+                        }}
+                        title="Remove Image"
+                      >
+                        <X size={14} />
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', marginTop: '1rem' }}>
