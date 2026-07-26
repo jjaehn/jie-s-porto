@@ -77,23 +77,57 @@ function createHoneycombRows(items) {
 
 export default function Skills() {
   const allSkills = [
-    { name: "Artificial Intelligence", category: "AI Tools", level: "Expert", desc: "Building intelligent agents, decision frameworks, and autonomous reasoning systems.", icon: "🤖" },
-    { name: "Machine Learning", category: "AI Tools", level: "Expert", desc: "Supervised & unsupervised learning, regression algorithms, classifiers, and model optimization.", icon: "🧠" },
-    { name: "Computer Vision", category: "AI Tools", level: "Advanced", desc: "Object detection, face recognition, spatial segmentation, and real-time video frame processing.", icon: "👁️" },
-    { name: "OpenCV", category: "AI Tools", level: "Advanced", desc: "Matrix operations, image filtering, contour extraction, and visual stream pipelines.", icon: "📷" },
-    { name: "TensorFlow", category: "AI Frameworks", level: "Advanced", desc: "Designing deep neural networks, Keras sequential models, and model deployment.", icon: "🟧" },
-    { name: "PyTorch", category: "AI Frameworks", level: "Expert", desc: "Dynamic computational graphs, tensor transformations, custom loss functions, and model training.", icon: "🔥" },
-    { name: "HTML", category: "Frontend", level: "Expert", desc: "Semantic structure, accessible markup, and clean DOM hierarchy.", icon: "🌐" },
-    { name: "CSS", category: "Frontend", level: "Expert", desc: "Vanilla CSS3 layouts, glassmorphic UI designs, keyframe micro-animations, and responsive grids.", icon: "🎨" },
-    { name: "JavaScript", category: "Frontend", level: "Expert", desc: "Asynchronous application logic, modern ES6+, DOM interactions, and dynamic web interfaces.", icon: "⚡" },
-    { name: "React", category: "Frontend", level: "Expert", desc: "Component architecture, custom hooks, state management, and modern SPA interfaces.", icon: "⚛️" },
-    { name: "UI/UX Design", category: "Frontend", level: "Advanced", desc: "User research, wireframing, high-fidelity dark glassmorphic prototyping, and visual aesthetics.", icon: "📐" },
-    { name: "Python", category: "Backend", level: "Expert", desc: "Primary research & development language for AI algorithms, automation scripts, and backend APIs.", icon: "🐍" },
-    { name: "PHP", category: "Backend", level: "Intermediate", desc: "Server-side scripting, relational database queries, and web service integrations.", icon: "🐘" },
-    { name: "Node.js", category: "Backend", level: "Advanced", desc: "Event-driven backend servers, RESTful microservices, and asynchronous I/O APIs.", icon: "🟩" },
-    { name: "MySQL", category: "Backend", level: "Advanced", desc: "Relational database schema design, SQL querying, indexing, and data modeling.", icon: "🐬" },
-    { name: "Firebase", category: "Backend", level: "Intermediate", desc: "Firestore NoSQL document databases, real-time sync, and user authentication.", icon: "🔥" },
-    { name: "Git", category: "Tools", level: "Advanced", desc: "Version control workflows, branching strategies, commit tracking, and collaborative repos.", icon: "📦" }
+    // 1. AI Tools
+    { name: "Artificial Intelligence", category: "AI Tools", level: "Expert", desc: "Building autonomous agents, cognitive models, and intelligent decision systems.", icon: "🤖" },
+    { name: "Machine Learning", category: "AI Tools", level: "Expert", desc: "Supervised & unsupervised learning, classification models, regression, and hyperparameter tuning.", icon: "🧠" },
+    { name: "Deep Learning", category: "AI Tools", level: "Expert", desc: "Multi-layer neural networks, CNNs, RNNs, and deep representations.", icon: "🌌" },
+    { name: "Computer Vision", category: "AI Tools", level: "Advanced", desc: "Biometric face verification, object detection, landmark tracking, and real-time video analytics.", icon: "👁️" },
+    { name: "Natural Language Processing", category: "AI Tools", level: "Advanced", desc: "Text classification, sentiment analysis, language parsing, and vector embeddings.", icon: "💬" },
+    { name: "Roboflow", category: "AI Tools", level: "Advanced", desc: "Computer vision dataset management, auto-labeling, image augmentation, and deployment.", icon: "🎯" },
+    { name: "OpenCV", category: "AI Tools", level: "Advanced", desc: "Image filtering, contour detection, video frame manipulation, and camera pipelines.", icon: "📷" },
+    { name: "TensorFlow", category: "AI Tools", level: "Advanced", desc: "Deep neural network architectures, Keras models, and edge model quantization.", icon: "🟧" },
+    { name: "PyTorch", category: "AI Tools", level: "Expert", desc: "Dynamic computational graphs, custom loss functions, and CUDA tensor acceleration.", icon: "🔥" },
+    { name: "Keras", category: "AI Tools", level: "Advanced", desc: "High-level neural network API for rapid model prototyping and training.", icon: "🔴" },
+
+    // 2. AI Frameworks
+    { name: "TensorFlow", category: "AI Frameworks", level: "Advanced", desc: "Deep neural network architectures, Keras models, and edge model quantization.", icon: "🟧" },
+    { name: "PyTorch", category: "AI Frameworks", level: "Expert", desc: "Dynamic computational graphs, custom loss functions, and CUDA tensor acceleration.", icon: "🔥" },
+    { name: "Keras", category: "AI Frameworks", level: "Advanced", desc: "High-level neural network API for rapid model prototyping and training.", icon: "🔴" },
+    { name: "Scikit-learn", category: "AI Frameworks", level: "Expert", desc: "Classical machine learning estimators, random forests, SVMs, and evaluation metrics.", icon: "📊" },
+    { name: "NLTK", category: "AI Frameworks", level: "Advanced", desc: "Natural Language Toolkit for tokenization, stemming, lemmatization, and POS tagging.", icon: "📖" },
+    { name: "Gensim", category: "AI Frameworks", level: "Advanced", desc: "Topic modeling, Word2Vec vector space modeling, and document similarity analysis.", icon: "🌐" },
+    { name: "OpenCV", category: "AI Frameworks", level: "Advanced", desc: "Image filtering, contour detection, video frame manipulation, and camera pipelines.", icon: "📷" },
+
+    // 3. Frontend
+    { name: "HTML5", category: "Frontend", level: "Expert", desc: "Semantic HTML5 markup, accessible DOM structure, and clean web layout standard.", icon: "🌐" },
+    { name: "CSS3", category: "Frontend", level: "Expert", desc: "Vanilla CSS3 styling, glassmorphism, responsive grids, keyframes, and flexbox.", icon: "🎨" },
+    { name: "JavaScript", category: "Frontend", level: "Expert", desc: "ES6+ modern syntax, async/await, DOM manipulation, and dynamic client logic.", icon: "⚡" },
+    { name: "React.js", category: "Frontend", level: "Expert", desc: "Single Page Application architecture, custom hooks, state management, and reusable UI components.", icon: "⚛️" },
+    { name: "Tailwind CSS", category: "Frontend", level: "Advanced", desc: "Utility-first CSS framework for rapid responsive design and modern styling.", icon: "🌊" },
+    { name: "Bootstrap", category: "Frontend", level: "Advanced", desc: "Responsive grid systems, pre-built components, and rapid web prototyping.", icon: "🅱️" },
+    { name: "Responsive Design", category: "Frontend", level: "Expert", desc: "Mobile-first layouts, fluid viewports, and multi-device cross-browser compatibility.", icon: "📱" },
+    { name: "UI/UX Design", category: "Frontend", level: "Advanced", desc: "User interface design, wireframing, high-fidelity dark glassmorphic mockups, and visual polish.", icon: "📐" },
+
+    // 4. Backend
+    { name: "Python", category: "Backend", level: "Expert", desc: "Primary backend language for AI modeling, data pipelines, and server scripts.", icon: "🐍" },
+    { name: "PHP", category: "Backend", level: "Intermediate", desc: "Server-side scripting, relational database queries, and dynamic web services.", icon: "🐘" },
+    { name: "Node.js", category: "Backend", level: "Advanced", desc: "Asynchronous JavaScript runtime, Express REST microservices, and server logic.", icon: "🟩" },
+    { name: "Firebase", category: "Backend", level: "Advanced", desc: "Cloud Realtime Database, Firestore NoSQL, authentication, and hosting.", icon: "🔥" },
+    { name: "MySQL", category: "Backend", level: "Advanced", desc: "Relational database design, complex SQL queries, indexes, and data integrity.", icon: "🐬" },
+    { name: "REST API", category: "Backend", level: "Expert", desc: "Designing and consuming RESTful HTTP endpoints, JSON payloads, and webhooks.", icon: "🔌" },
+    { name: "Authentication", category: "Backend", level: "Advanced", desc: "Secure passcode auth, JWT tokens, session state, and security passcodes.", icon: "🔒" },
+
+    // 5. Tools
+    { name: "Git", category: "Tools", level: "Advanced", desc: "Distributed version control, branch management, merge conflict resolution, and commits.", icon: "📦" },
+    { name: "GitHub", category: "Tools", level: "Advanced", desc: "Remote repository hosting, team collaboration, GitHub Actions, and project releases.", icon: "🐙" },
+    { name: "Visual Studio Code", category: "Tools", level: "Expert", desc: "Primary IDE environment with custom extensions, debugging tools, and git integration.", icon: "💻" },
+    { name: "Figma", category: "Tools", level: "Advanced", desc: "Collaborative UI/UX design, vector graphics, component libraries, and interactive prototypes.", icon: "🎨" },
+    { name: "Canva", category: "Tools", level: "Advanced", desc: "Graphic design, presentation decks, promotional banners, and visual media creation.", icon: "🖼️" },
+    { name: "Google Colab", category: "Tools", level: "Expert", desc: "Cloud GPU/TPU Jupyter notebooks for training AI/ML models and data analysis.", icon: "☁️" },
+    { name: "Android Studio", category: "Tools", level: "Intermediate", desc: "Mobile app development IDE, Android emulator testing, and Java/Kotlin builds.", icon: "🤖" },
+    { name: "Firebase Console", category: "Tools", level: "Advanced", desc: "Managing Firebase projects, database security rules, and real-time monitoring.", icon: "🔥" },
+    { name: "Postman", category: "Tools", level: "Advanced", desc: "API testing, inspecting HTTP requests/responses, and automated endpoint testing.", icon: "🚀" },
+    { name: "Blender", category: "Tools", level: "Intermediate", desc: "3D computer graphics software for modeling, rendering, and visual assets.", icon: "🧊" }
   ];
 
   const categories = ["All", "AI Tools", "AI Frameworks", "Frontend", "Backend", "Tools"];
