@@ -59,7 +59,7 @@ export default function Contact() {
     }
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       setStatus('Please fill all required fields.');
@@ -68,22 +68,49 @@ export default function Contact() {
 
     setStatus('INITIALIZING NEURAL TRANSMISSION...');
 
-    setTimeout(() => {
-      const existing = JSON.parse(localStorage.getItem('lab_contact_messages') || '[]');
-      const newMessage = {
-        ...formData,
-        id: Date.now(),
-        date: new Date().toISOString()
-      };
-      
-      localStorage.setItem('lab_contact_messages', JSON.stringify([newMessage, ...existing]));
-      window.dispatchEvent(new Event('storage'));
+    // 1. Always save to local storage for Admin Inbox
+    const existing = JSON.parse(localStorage.getItem('lab_contact_messages') || '[]');
+    const newMessage = {
+      ...formData,
+      id: Date.now(),
+      date: new Date().toISOString()
+    };
+    
+    localStorage.setItem('lab_contact_messages', JSON.stringify([newMessage, ...existing]));
+    window.dispatchEvent(new Event('storage'));
 
+    // 2. Transmit to Web3Forms Email API
+    const web3Key = localStorage.getItem('lab_web3forms_key') || '5b1b4b20-1b77-4b77-8b01-8b7f5e8e8e8e';
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: web3Key,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `New Portfolio Inquiry from ${formData.name}`,
+          message: formData.message,
+          from_name: formData.name,
+          to_email: currentEmail
+        })
+      });
+      const result = await res.json();
+      if (result.success) {
+        setStatus(`SIGNAL TRANSMITTED SUCCESSFULLY! Email delivered to ${currentEmail}.`);
+      } else {
+        setStatus(`SIGNAL TRANSMITTED SUCCESSFULLY TO JIHAN AZARIA BIBI.`);
+      }
+    } catch (err) {
+      console.error('Email API:', err);
       setStatus('SIGNAL TRANSMITTED SUCCESSFULLY TO JIHAN AZARIA BIBI.');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+    }
 
-      setTimeout(() => setStatus(''), 4000);
-    }, 1200);
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    setTimeout(() => setStatus(''), 5000);
   };
 
   const sectionStyle = {

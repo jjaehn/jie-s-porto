@@ -514,6 +514,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
     name: adminProfile.name,
     email: adminProfile.email,
     avatar: adminProfile.avatar,
+    web3Key: localStorage.getItem('lab_web3forms_key') || '',
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
@@ -529,6 +530,10 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
       localStorage.setItem('lab_admin_passcode', profileForm.newPassword);
       showToast('Security Passcode Updated', `New passcode saved! Use this passcode or default 'laboratory2026' to log in.`);
       setProfileForm(prev => ({ ...prev, newPassword: '', confirmPassword: '' }));
+    }
+
+    if (profileForm.web3Key !== undefined) {
+      localStorage.setItem('lab_web3forms_key', profileForm.web3Key.trim());
     }
 
     const updated = {
@@ -1205,6 +1210,18 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
                   style={fieldInputStyle}
                   placeholder="e.g., /ai_researcher_portrait.png"
                 />
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#F9F6F0', marginBottom: '0.4rem' }}>Web3Forms Access Key (Optional for Email Delivery)</label>
+                <input
+                  type="text"
+                  value={profileForm.web3Key}
+                  onChange={(e) => setProfileForm({ ...profileForm, web3Key: e.target.value })}
+                  style={fieldInputStyle}
+                  placeholder="Free Key from web3forms.com (e.g. 5b1b4b20-1b77...)"
+                />
+                <span style={{ fontSize: '0.75rem', color: '#B3A4A9', marginTop: '0.2rem', display: 'block' }}>Get a free key instantly at <a href="https://web3forms.com" target="_blank" rel="noreferrer" style={{ color: '#E0A96D' }}>web3forms.com</a> to receive contact form emails directly in your inbox.</span>
               </div>
 
               <div style={{ borderTop: '1px solid rgba(224, 169, 109, 0.15)', paddingTop: '1.5rem' }}>
