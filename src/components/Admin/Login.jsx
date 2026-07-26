@@ -8,7 +8,19 @@ export default function Login({ onLoginSuccess, onCancel }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const storedPasscode = localStorage.getItem('lab_admin_passcode') || 'laboratory2026';
-    if (username === 'admin' && password === storedPasscode) {
+    let storedEmail = 'jihan.bibi@student.president.ac.id';
+    try {
+      const storedProfile = JSON.parse(localStorage.getItem('lab_admin_profile') || '{}');
+      if (storedProfile && storedProfile.email) storedEmail = storedProfile.email;
+    } catch (e) { console.error(e); }
+
+    const inputUser = username.trim().toLowerCase();
+    const isUserValid = inputUser === 'admin' || 
+                        inputUser === storedEmail.toLowerCase() || 
+                        inputUser === 'jihan.azaria@student.president.ac.id' ||
+                        inputUser === 'jihan.bibi@student.president.ac.id';
+
+    if (isUserValid && password === storedPasscode) {
       onLoginSuccess();
     } else {
       setError('INVALID AUTHENTICATION PROTOCOL.');
@@ -167,7 +179,7 @@ export default function Login({ onLoginSuccess, onCancel }) {
           textAlign: 'center',
           fontFamily: 'monospace'
         }}>
-          HINT: username is 'admin', passcode is 'laboratory2026'
+          HINT: User Identity can be 'admin' or your email, passcode is 'laboratory2026'
         </div>
       </div>
     </div>
