@@ -1,4 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { 
+  LayoutDashboard, 
+  FolderKanban, 
+  Briefcase, 
+  Mail, 
+  User, 
+  LogOut, 
+  Zap, 
+  Plus, 
+  Inbox, 
+  Settings, 
+  Pencil, 
+  Trash2, 
+  Star
+} from 'lucide-react';
 
 export default function Dashboard({ onLogout, globalState, updateGlobalState }) {
   const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'projects' | 'experience' | 'messages' | 'profile'
@@ -622,7 +637,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
       {/* --- CONFIRMATION MODAL --- */}
       {confirmModal.isOpen && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 9990, backgroundColor: 'rgba(7, 3, 5, 0.85)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-          <div style={{ ...cardStyle, maxWidth: '420px', width: '100%', textCenter: 'center', border: '1px solid rgba(224, 169, 109, 0.4)' }}>
+          <div style={{ ...cardStyle, maxWidth: '420px', width: '100%', textAlign: 'center', border: '1px solid rgba(224, 169, 109, 0.4)' }}>
             <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.4rem', color: '#F9F6F0', marginBottom: '0.8rem' }}>{confirmModal.title}</h3>
             <p style={{ fontSize: '0.92rem', color: '#B3A4A9', marginBottom: '1.8rem', lineHeight: 1.5 }}>{confirmModal.message}</p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
@@ -664,19 +679,19 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
           {/* Navigation Links */}
           <nav>
             <button onClick={() => setActiveTab('overview')} style={navItemBtn(activeTab === 'overview')}>
-              <span>📊</span> Dashboard
+              <LayoutDashboard size={18} /> Dashboard
             </button>
             <button onClick={() => setActiveTab('projects')} style={navItemBtn(activeTab === 'projects')}>
-              <span>📂</span> Projects ({projects.length})
+              <FolderKanban size={18} /> Projects ({projects.length})
             </button>
             <button onClick={() => setActiveTab('experience')} style={navItemBtn(activeTab === 'experience')}>
-              <span>💼</span> Experience ({experiences.length})
+              <Briefcase size={18} /> Experience ({experiences.length})
             </button>
             <button onClick={() => setActiveTab('messages')} style={navItemBtn(activeTab === 'messages')}>
-              <span>📩</span> Contact Messages {unreadMessagesCount > 0 && <span style={{ backgroundColor: '#8C1D36', color: '#FFF', borderRadius: '10px', padding: '0.1rem 0.5rem', fontSize: '0.72rem', marginLeft: 'auto' }}>{unreadMessagesCount}</span>}
+              <Mail size={18} /> Contact Messages {unreadMessagesCount > 0 && <span style={{ backgroundColor: '#8C1D36', color: '#FFF', borderRadius: '10px', padding: '0.1rem 0.5rem', fontSize: '0.72rem', marginLeft: 'auto' }}>{unreadMessagesCount}</span>}
             </button>
             <button onClick={() => setActiveTab('profile')} style={navItemBtn(activeTab === 'profile')}>
-              <span>👤</span> Admin Profile
+              <User size={18} /> Admin Profile
             </button>
           </nav>
         </div>
@@ -693,9 +708,9 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
               });
             }}
             className="btn btn-secondary" 
-            style={{ width: '100%', padding: '0.75rem 1rem', fontSize: '0.88rem', justifyContent: 'center' }}
+            style={{ width: '100%', padding: '0.75rem 1rem', fontSize: '0.88rem', justifyContent: 'center', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
           >
-            <span>🚪</span> Logout
+            <LogOut size={16} /> Logout
           </button>
         </div>
       </aside>
@@ -721,7 +736,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
               <div style={cardStyle}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
                   <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#E0A96D', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Total Projects</span>
-                  <span style={{ fontSize: '1.4rem' }}>📂</span>
+                  <FolderKanban size={24} color="#E0A96D" />
                 </div>
                 <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '2.2rem', fontWeight: 800, color: '#F9F6F0' }}>{projects.length}</div>
                 <div style={{ fontSize: '0.78rem', color: '#7A696F', marginTop: '0.4rem' }}>{publishedProjectsCount} published / {projects.length - publishedProjectsCount} draft</div>
@@ -730,7 +745,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
               <div style={cardStyle}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
                   <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#E0A96D', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Total Experiences</span>
-                  <span style={{ fontSize: '1.4rem' }}>💼</span>
+                  <Briefcase size={24} color="#E0A96D" />
                 </div>
                 <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '2.2rem', fontWeight: 800, color: '#F9F6F0' }}>{experiences.length}</div>
                 <div style={{ fontSize: '0.78rem', color: '#7A696F', marginTop: '0.4rem' }}>Education &amp; Work career milestones</div>
@@ -739,7 +754,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
               <div style={cardStyle}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
                   <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#E0A96D', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Contact Messages</span>
-                  <span style={{ fontSize: '1.4rem' }}>📩</span>
+                  <Mail size={24} color="#E0A96D" />
                 </div>
                 <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '2.2rem', fontWeight: 800, color: '#F9F6F0' }}>{messages.length}</div>
                 <div style={{ fontSize: '0.78rem', color: unreadMessagesCount > 0 ? '#E0A96D' : '#7A696F', marginTop: '0.4rem' }}>
@@ -750,7 +765,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
               <div style={cardStyle}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
                   <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#E0A96D', textTransform: 'uppercase', letterSpacing: '0.08em' }}>System Status</span>
-                  <span style={{ fontSize: '1.4rem' }}>⚡</span>
+                  <Zap size={24} color="#E0A96D" />
                 </div>
                 <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '2.2rem', fontWeight: 800, color: '#D4AF37' }}>ONLINE</div>
                 <div style={{ fontSize: '0.78rem', color: '#7A696F', marginTop: '0.4rem' }}>Vercel Edge &amp; Storage synced</div>
@@ -762,17 +777,17 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
               <div style={cardStyle}>
                 <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.3rem', color: '#F9F6F0', marginBottom: '1.2rem' }}>Quick Actions</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                  <button onClick={handleOpenAddProject} className="btn btn-primary" style={{ padding: '0.9rem', fontSize: '0.88rem' }}>
-                    ➕ Add New Project
+                  <button onClick={handleOpenAddProject} className="btn btn-primary" style={{ padding: '0.9rem', fontSize: '0.88rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                    <Plus size={16} /> Add New Project
                   </button>
-                  <button onClick={handleOpenAddExperience} className="btn btn-secondary" style={{ padding: '0.9rem', fontSize: '0.88rem' }}>
-                    ➕ Add Experience
+                  <button onClick={handleOpenAddExperience} className="btn btn-secondary" style={{ padding: '0.9rem', fontSize: '0.88rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                    <Plus size={16} /> Add Experience
                   </button>
-                  <button onClick={() => setActiveTab('messages')} className="btn btn-secondary" style={{ padding: '0.9rem', fontSize: '0.88rem' }}>
-                    📥 View Inbox ({unreadMessagesCount})
+                  <button onClick={() => setActiveTab('messages')} className="btn btn-secondary" style={{ padding: '0.9rem', fontSize: '0.88rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                    <Inbox size={16} /> View Inbox ({unreadMessagesCount})
                   </button>
-                  <button onClick={() => setActiveTab('profile')} className="btn btn-secondary" style={{ padding: '0.9rem', fontSize: '0.88rem' }}>
-                    ⚙️ Edit Admin Profile
+                  <button onClick={() => setActiveTab('profile')} className="btn btn-secondary" style={{ padding: '0.9rem', fontSize: '0.88rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                    <Settings size={16} /> Edit Admin Profile
                   </button>
                 </div>
               </div>
@@ -811,8 +826,8 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
                 <h2 style={pageHeader}>Projects Management</h2>
                 <p style={{ fontSize: '0.9rem', color: '#B3A4A9' }}>Add, edit, publish, feature, or remove portfolio projects.</p>
               </div>
-              <button onClick={handleOpenAddProject} className="btn btn-primary">
-                ➕ Add New Project
+              <button onClick={handleOpenAddProject} className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Plus size={16} /> Add New Project
               </button>
             </div>
 
@@ -820,7 +835,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
             <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
               <input
                 type="text"
-                placeholder="🔍 Search projects by title or description..."
+                placeholder="Search projects by title or description..."
                 value={projectSearch}
                 onChange={(e) => { setProjectSearch(e.target.value); setProjectPage(1); }}
                 style={{ ...fieldInputStyle, maxWidth: '350px' }}
@@ -842,12 +857,12 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
 
             {/* Projects Grid View */}
             {paginatedProjects.length === 0 ? (
-              <div style={{ ...cardStyle, textAlign: 'center', padding: '4rem 2rem' }}>
-                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📂</div>
+              <div style={{ ...cardStyle, textAlign: 'center', padding: '4rem 2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <FolderKanban size={48} color="#E0A96D" style={{ marginBottom: '1rem' }} />
                 <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.4rem', color: '#F9F6F0', marginBottom: '0.5rem' }}>No Projects Found</h3>
                 <p style={{ color: '#B3A4A9', fontSize: '0.9rem', marginBottom: '1.5rem' }}>No projects matched your search criteria or category filter.</p>
-                <button onClick={handleOpenAddProject} className="btn btn-primary">
-                  Create Your First Project
+                <button onClick={handleOpenAddProject} className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Plus size={16} /> Create Your First Project
                 </button>
               </div>
             ) : (
@@ -862,10 +877,10 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
                       <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
                         <button 
                           onClick={() => toggleProjectFeatured(p.id)}
-                          style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', color: p.featured ? '#D4AF37' : '#5C4A50' }}
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.2rem', display: 'flex', alignItems: 'center' }}
                           title={p.featured ? "Featured Project" : "Make Featured"}
                         >
-                          ★
+                          <Star size={18} fill={p.featured ? "#D4AF37" : "none"} color={p.featured ? "#D4AF37" : "#5C4A50"} />
                         </button>
                         <button 
                           onClick={() => toggleProjectStatus(p.id)}
@@ -888,11 +903,11 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
 
                     {/* Actions */}
                     <div style={{ display: 'flex', gap: '0.8rem', paddingTop: '1rem', borderTop: '1px solid rgba(224, 169, 109, 0.15)' }}>
-                      <button onClick={() => handleOpenEditProject(p)} className="btn btn-secondary" style={{ flex: 1, padding: '0.5rem', fontSize: '0.82rem' }}>
-                        ✏️ Edit
+                      <button onClick={() => handleOpenEditProject(p)} className="btn btn-secondary" style={{ flex: 1, padding: '0.5rem', fontSize: '0.82rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}>
+                        <Pencil size={14} /> Edit
                       </button>
-                      <button onClick={() => handleDeleteProject(p)} className="btn btn-secondary" style={{ flex: 1, padding: '0.5rem', fontSize: '0.82rem', borderColor: 'rgba(140, 29, 54, 0.5)', color: '#E0A899' }}>
-                        🗑️ Delete
+                      <button onClick={() => handleDeleteProject(p)} className="btn btn-secondary" style={{ flex: 1, padding: '0.5rem', fontSize: '0.82rem', borderColor: 'rgba(140, 29, 54, 0.5)', color: '#E0A899', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}>
+                        <Trash2 size={14} /> Delete
                       </button>
                     </div>
                   </div>
@@ -932,8 +947,8 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
                 <h2 style={pageHeader}>Experience &amp; Career Milestones</h2>
                 <p style={{ fontSize: '0.9rem', color: '#B3A4A9' }}>Manage education, internships, freelance work, organizations, and achievements.</p>
               </div>
-              <button onClick={handleOpenAddExperience} className="btn btn-primary">
-                ➕ Add Experience Item
+              <button onClick={handleOpenAddExperience} className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Plus size={16} /> Add Experience Item
               </button>
             </div>
 
@@ -958,24 +973,24 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
                     <button 
                       onClick={() => moveExperience(index, -1)} 
                       disabled={index === 0}
-                      style={{ padding: '0.4rem 0.6rem', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(224,169,109,0.2)', color: '#F9F6F0', cursor: index === 0 ? 'not-allowed' : 'pointer', opacity: index === 0 ? 0.3 : 1 }}
+                      style={{ padding: '0.4rem 0.6rem', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(224,169,109,0.2)', color: '#F9F6F0', cursor: index === 0 ? 'not-allowed' : 'pointer', opacity: index === 0 ? 0.3 : 1, display: 'flex', alignItems: 'center' }}
                       title="Move Up"
                     >
-                      ▲
+                      <ChevronUp size={16} />
                     </button>
                     <button 
                       onClick={() => moveExperience(index, 1)} 
                       disabled={index === experiences.length - 1}
-                      style={{ padding: '0.4rem 0.6rem', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(224,169,109,0.2)', color: '#F9F6F0', cursor: index === experiences.length - 1 ? 'not-allowed' : 'pointer', opacity: index === experiences.length - 1 ? 0.3 : 1 }}
+                      style={{ padding: '0.4rem 0.6rem', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(224,169,109,0.2)', color: '#F9F6F0', cursor: index === experiences.length - 1 ? 'not-allowed' : 'pointer', opacity: index === experiences.length - 1 ? 0.3 : 1, display: 'flex', alignItems: 'center' }}
                       title="Move Down"
                     >
-                      ▼
+                      <ChevronDown size={16} />
                     </button>
-                    <button onClick={() => handleOpenEditExperience(exp)} className="btn btn-secondary" style={{ padding: '0.5rem 0.8rem', fontSize: '0.82rem' }}>
-                      ✏️ Edit
+                    <button onClick={() => handleOpenEditExperience(exp)} className="btn btn-secondary" style={{ padding: '0.5rem 0.8rem', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <Pencil size={14} /> Edit
                     </button>
-                    <button onClick={() => handleDeleteExperience(exp)} className="btn btn-secondary" style={{ padding: '0.5rem 0.8rem', fontSize: '0.82rem', borderColor: 'rgba(140, 29, 54, 0.5)', color: '#E0A899' }}>
-                      🗑️ Delete
+                    <button onClick={() => handleDeleteExperience(exp)} className="btn btn-secondary" style={{ padding: '0.5rem 0.8rem', fontSize: '0.82rem', borderColor: 'rgba(140, 29, 54, 0.5)', color: '#E0A899', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <Trash2 size={14} /> Delete
                     </button>
                   </div>
                 </div>
@@ -998,7 +1013,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
             <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
               <input
                 type="text"
-                placeholder="🔍 Search messages by sender, email, subject..."
+                placeholder="Search messages by sender, email, subject..."
                 value={messageSearch}
                 onChange={(e) => { setMessageSearch(e.target.value); setMessagePage(1); }}
                 style={{ ...fieldInputStyle, maxWidth: '350px' }}
@@ -1016,8 +1031,8 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
 
             {/* Table View */}
             {paginatedMessages.length === 0 ? (
-              <div style={{ ...cardStyle, textAlign: 'center', padding: '4rem 2rem' }}>
-                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📩</div>
+              <div style={{ ...cardStyle, textAlign: 'center', padding: '4rem 2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Mail size={48} color="#E0A96D" style={{ marginBottom: '1rem' }} />
                 <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.4rem', color: '#F9F6F0', marginBottom: '0.5rem' }}>No Messages Found</h3>
                 <p style={{ color: '#B3A4A9', fontSize: '0.9rem' }}>Your inbox is currently clear of matching message logs.</p>
               </div>
@@ -1052,14 +1067,14 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
                         </td>
                         <td style={{ padding: '1rem 1.2rem', textAlign: 'right' }}>
                           <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-                            <button onClick={() => setSelectedMessage(m)} className="btn btn-secondary" style={{ padding: '0.4rem 0.7rem', fontSize: '0.78rem' }}>
-                              👁️ View
+                            <button onClick={() => setSelectedMessage(m)} className="btn btn-secondary" style={{ padding: '0.4rem 0.7rem', fontSize: '0.78rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                              <Eye size={14} /> View
                             </button>
-                            <a href={`mailto:${m.email}?subject=Re: ${encodeURIComponent(m.subject || 'Portfolio Inquiry')}`} className="btn btn-primary" style={{ padding: '0.4rem 0.7rem', fontSize: '0.78rem', textDecoration: 'none' }}>
-                              ✉️ Reply
+                            <a href={`mailto:${m.email}?subject=Re: ${encodeURIComponent(m.subject || 'Portfolio Inquiry')}`} className="btn btn-primary" style={{ padding: '0.4rem 0.7rem', fontSize: '0.78rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                              <Send size={14} /> Reply
                             </a>
-                            <button onClick={() => handleDeleteMessage(m.id)} className="btn btn-secondary" style={{ padding: '0.4rem 0.7rem', fontSize: '0.78rem', color: '#E0A899' }}>
-                              🗑️
+                            <button onClick={() => handleDeleteMessage(m.id)} className="btn btn-secondary" style={{ padding: '0.4rem 0.7rem', fontSize: '0.78rem', color: '#E0A899', display: 'flex', alignItems: 'center' }}>
+                              <Trash2 size={14} />
                             </button>
                           </div>
                         </td>
@@ -1185,8 +1200,8 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
       {projectModal.isOpen && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 9980, backgroundColor: 'rgba(7, 3, 5, 0.85)', backdropFilter: 'blur(12px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', overflowY: 'auto' }}>
           <div style={{ ...cardStyle, maxWidth: '650px', width: '100%', maxHeight: '90vh', overflowY: 'auto' }}>
-            <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.5rem', color: '#F9F6F0', marginBottom: '1.5rem' }}>
-              {projectModal.mode === 'add' ? '➕ Deploy New Project' : '✏️ Edit Project'}
+            <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.5rem', color: '#F9F6F0', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              {projectModal.mode === 'add' ? <><Plus size={20} /> Deploy New Project</> : <><Pencil size={20} /> Edit Project</>}
             </h3>
 
             <form onSubmit={handleSaveProjectForm} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
@@ -1326,7 +1341,7 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
                     checked={projectModal.data.featured}
                     onChange={(e) => setProjectModal({ ...projectModal, data: { ...projectModal.data, featured: e.target.checked } })}
                   />
-                  Featured Project ★
+                  Featured Project
                 </label>
               </div>
 
@@ -1347,8 +1362,8 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
       {experienceModal.isOpen && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 9980, backgroundColor: 'rgba(7, 3, 5, 0.85)', backdropFilter: 'blur(12px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', overflowY: 'auto' }}>
           <div style={{ ...cardStyle, maxWidth: '580px', width: '100%' }}>
-            <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.5rem', color: '#F9F6F0', marginBottom: '1.5rem' }}>
-              {experienceModal.mode === 'add' ? '➕ Add Experience Item' : '✏️ Edit Experience Item'}
+            <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.5rem', color: '#F9F6F0', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              {experienceModal.mode === 'add' ? <><Plus size={20} /> Add Experience Item</> : <><Pencil size={20} /> Edit Experience Item</>}
             </h3>
 
             <form onSubmit={handleSaveExperienceForm} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
@@ -1476,16 +1491,16 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
               <a 
                 href={`mailto:${selectedMessage.email}?subject=Re: ${encodeURIComponent(selectedMessage.subject || 'Portfolio Inquiry')}`} 
                 className="btn btn-primary" 
-                style={{ padding: '0.6rem 1rem', fontSize: '0.85rem', textDecoration: 'none' }}
+                style={{ padding: '0.6rem 1rem', fontSize: '0.85rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
               >
-                ✉️ Reply via Email
+                <Send size={14} /> Reply via Email
               </a>
               <button 
                 onClick={() => handleDeleteMessage(selectedMessage.id)} 
                 className="btn btn-secondary" 
-                style={{ padding: '0.6rem 1rem', fontSize: '0.85rem', color: '#E0A899', borderColor: 'rgba(140, 29, 54, 0.5)' }}
+                style={{ padding: '0.6rem 1rem', fontSize: '0.85rem', color: '#E0A899', borderColor: 'rgba(140, 29, 54, 0.5)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
               >
-                🗑️ Delete
+                <Trash2 size={14} /> Delete
               </button>
               <button 
                 onClick={() => setSelectedMessage(null)} 
