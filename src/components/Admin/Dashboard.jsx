@@ -265,6 +265,25 @@ export default function Dashboard({ onLogout, globalState, updateGlobalState }) 
         setAdminProfile(JSON.parse(storedProfile));
       } catch (e) { console.error(e); }
     }
+
+    // Live listener for new messages sent in other tabs/windows
+    const syncLiveMessages = () => {
+      const liveMsgs = localStorage.getItem('lab_contact_messages');
+      if (liveMsgs) {
+        try {
+          const parsed = JSON.parse(liveMsgs);
+          if (Array.isArray(parsed)) setMessages(parsed);
+        } catch (e) { console.error(e); }
+      }
+    };
+
+    window.addEventListener('storage', syncLiveMessages);
+    window.addEventListener('focus', syncLiveMessages);
+
+    return () => {
+      window.removeEventListener('storage', syncLiveMessages);
+      window.removeEventListener('focus', syncLiveMessages);
+    };
   }, []);
 
   // Save Handlers

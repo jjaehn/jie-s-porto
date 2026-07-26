@@ -77,6 +77,7 @@ export default function Contact() {
       };
       
       localStorage.setItem('lab_contact_messages', JSON.stringify([newMessage, ...existing]));
+      window.dispatchEvent(new Event('storage'));
 
       setStatus('SIGNAL TRANSMITTED SUCCESSFULLY TO JIHAN AZARIA BIBI.');
       setFormData({ name: '', email: '', subject: '', message: '' });
