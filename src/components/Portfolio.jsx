@@ -1,17 +1,6 @@
 import React, { useState } from 'react';
 
 export default function Portfolio({ onCaseStudySelect }) {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const categories = [
-    "All",
-    "AI Projects",
-    "Web Applications",
-    "Computer Vision",
-    "Machine Learning",
-    "IoT Projects",
-    "Research Projects"
-  ];
 
   const defaultProjects = [
     {
@@ -94,36 +83,12 @@ export default function Portfolio({ onCaseStudySelect }) {
     return defaultProjects;
   });
 
-  const filteredProjects = activeCategory === "All"
-    ? projects
-    : projects.filter(p => p.category === activeCategory);
+  const filteredProjects = projects;
 
   const sectionStyle = {
     position: 'relative',
     zIndex: 2,
   };
-
-  const filterContainer = {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '0.8rem',
-    flexWrap: 'wrap',
-    marginBottom: '3rem',
-  };
-
-  const filterBtn = (isActive) => ({
-    padding: '0.6rem 1.4rem',
-    borderRadius: '12px',
-    border: isActive ? '1px solid rgba(224, 169, 109, 0.45)' : '1px solid rgba(255, 255, 255, 0.05)',
-    background: isActive ? 'linear-gradient(135deg, rgba(140, 29, 54, 0.4), rgba(42, 8, 16, 0.6))' : 'rgba(22, 7, 12, 0.45)',
-    color: isActive ? '#F9F6F0' : '#B3A4A9',
-    fontFamily: "'Outfit', sans-serif",
-    fontSize: '0.9rem',
-    fontWeight: isActive ? 600 : 500,
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    boxShadow: isActive ? '0 0 15px rgba(140, 29, 54, 0.3)' : 'none',
-  });
 
   const gridStyle = {
     display: 'grid',
@@ -504,22 +469,9 @@ export default function Portfolio({ onCaseStudySelect }) {
       `}</style>
 
       <div className="container">
-        <div className="section-title-wrapper">
+        <div className="section-title-wrapper" style={{ marginBottom: '3rem' }}>
           <span className="section-subtitle">Showcase Repositories</span>
           <h2 className="section-title">Featured Projects</h2>
-        </div>
-
-        {/* Categories filters */}
-        <div style={filterContainer}>
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              style={filterBtn(activeCategory === cat)}
-            >
-              {cat}
-            </button>
-          ))}
         </div>
 
         <div style={gridStyle} className="bento-grid">
@@ -527,7 +479,7 @@ export default function Portfolio({ onCaseStudySelect }) {
             <div 
               key={proj.id} 
               className="glass-card" 
-              style={cardStyle(activeCategory === "All" ? proj.span : "span 6")}
+              style={cardStyle(proj.span || "span 6")}
             >
               {/* Interactive cover */}
               <div style={previewContainer}>
