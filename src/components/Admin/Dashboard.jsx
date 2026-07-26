@@ -12,7 +12,11 @@ import {
   Settings, 
   Pencil, 
   Trash2, 
-  Star
+  Star,
+  ChevronUp,
+  ChevronDown,
+  Eye,
+  Send
 } from 'lucide-react';
 
 export default function Dashboard({ onLogout, globalState, updateGlobalState }) {
