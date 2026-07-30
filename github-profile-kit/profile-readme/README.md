@@ -2,7 +2,7 @@
 
   <!-- Animated Header / Typing SVG -->
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1000&color=6366F1&center=true&vcenter=true&width=600&lines=Hi+%F0%9F%90%8B+I'm+Jihan+Azaria+Bibi;AI+%26+Machine+Learning+Enthusiast;Full+Stack+Developer+%26+Computer+Vision+Explorer;Building+Intelligent+Systems+%26+Scalable+Web+Apps" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1000&color=6366F1&center=true&vcenter=true&width=600&lines=Hi+%F0%9F%90%AF+I'm+Jihan+Azaria+Bibi;AI+%26+Machine+Learning+Enthusiast;Full+Stack+Developer+%26+Computer+Vision+Explorer;Building+Intelligent+Systems+%26+Scalable+Web+Apps" alt="Typing SVG" />
   </a>
 
   <h3 align="center">Informatics Student @ President University | Aspiring AI Engineer & Full Stack Developer</h3>
@@ -128,7 +128,7 @@ I am a final-year Informatics student at **President University** with a strong 
       <h3>💼 Personal Portfolio & Admin CMS</h3>
       <p>A high-performance modern personal portfolio website featuring a secure custom admin dashboard for dynamic project management, skill analytics, and contact management.</p>
       <p><b>Tech Stack:</b> <code>React</code> <code>Vite</code> <code>Tailwind CSS</code> <code>Firebase</code></p>
-      <a href="https://github.com/jjaehn/jie-s-porto">📁 View Repository</a> | <a href="https://jihanazariaa.vercel.app/">🌐 Live Demo</a>
+      <a href="https://github.com/jjaehn/jie-s-porto">📁 View Repository</a> | <a href="https://jihanazariaa.vercel.app/" target="_blank">🌐 Live Demo</a>
     </td>
   </tr>
   <tr>
