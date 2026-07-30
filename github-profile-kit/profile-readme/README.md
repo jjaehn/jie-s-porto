@@ -2,7 +2,7 @@
 
   <!-- Animated Header / Typing SVG -->
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1000&color=6366F1&center=true&vcenter=true&width=600&lines=Hi+%F0%9F%90%AF+I'm+Jihan+Azaria+Bibi;AI+%26+Machine+Learning+Enthusiast;Full+Stack+Developer+%26+Computer+Vision+Explorer;Building+Intelligent+Systems+%26+Scalable+Web+Apps" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=6366F1&center=true&vcenter=true&width=720&lines=Hi+%F0%9F%90%AF+I'm+Jihan+Azaria+Bibi;AI+%26+Machine+Learning+Enthusiast;Full+Stack+%26+Computer+Vision+Developer;Building+Intelligent+AI+%26+Web+Systems" alt="Typing SVG" />
   </a>
 
   <h3 align="center">Informatics Student @ President University | Aspiring AI Engineer & Full Stack Developer</h3>
