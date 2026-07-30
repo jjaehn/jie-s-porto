@@ -103,8 +103,8 @@ jihan-portfolio/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/jjaehn/jie-s-porto.git
-cd jie-s-porto
+git clone https://github.com/jjaehn/jihan-portfolio.git
+cd jihan-portfolio
 ```
 
 ### 2. Install Dependencies
