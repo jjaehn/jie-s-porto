@@ -127,5 +127,5 @@ Content and code are available under the MIT License. Game assets belong to thei
 
 **Jihan Azaria Bibi**  
 - GitHub: [@jjaehn](https://github.com/jjaehn)  
-- LinkedIn: [Jihan Azaria Bibi](https://linkedin.com/in/jihan-azaria-bibi)  
-- Email: [jihanazaria.work@gmail.com](mailto:jihanazaria.work@gmail.com)
+- LinkedIn: [Jihan Azaria Bibi](https://www.linkedin.com/in/jihanazariabibi)  
+- Email: [azariajihan36@gmail.com](mailto:azariajihan36@gmail.com)

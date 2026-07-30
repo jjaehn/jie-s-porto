@@ -15,13 +15,17 @@
     A modern, glassmorphic portfolio web application designed for high performance, featuring an integrated admin CMS dashboard to dynamically manage projects, skill analytics, and incoming contact inquiries.
   </p>
 
+  <p align="center">
+    <a href="https://jihanazariaa.vercel.app/" target="_blank"><b>🌐 Live Website: jihanazariaa.vercel.app</b></a>
+  </p>
+
 </div>
 
 ---
 
 ## 📌 Project Overview
 
-This repository powers **Jihan Azaria Bibi's** personal developer portfolio website. Built with **React 18**, **Vite**, **Tailwind CSS**, and **Firebase**, this application combines sleek dark-mode aesthetic design with a secure, password-protected Admin Dashboard. 
+This repository powers **Jihan Azaria Bibi's** personal developer portfolio website ([https://jihanazariaa.vercel.app/](https://jihanazariaa.vercel.app/)). Built with **React 18**, **Vite**, **Tailwind CSS**, and **Firebase**, this application combines sleek dark-mode aesthetic design with a secure, password-protected Admin Dashboard. 
 
 Rather than editing hardcoded JSON files to update portfolio content, the admin panel allows seamless CRUD management of featured projects, tech stack categories, experience timelines, and visitor messages in real-time.
 
@@ -77,7 +81,7 @@ graph LR
 ## 📁 Folder Structure
 
 ```text
-jihan-portfolio/
+jie-s-porto/
 ├── public/                    # Static assets & favicons
 ├── src/
 │   ├── assets/                # Logos, SVG icons, background images
@@ -149,5 +153,6 @@ Distributed under the MIT License. See `LICENSE` for details.
 
 **Jihan Azaria Bibi**  
 - GitHub: [@jjaehn](https://github.com/jjaehn)  
-- LinkedIn: [Jihan Azaria Bibi](https://linkedin.com/in/jihan-azaria-bibi)  
-- Email: [jihanazaria.work@gmail.com](mailto:jihanazaria.work@gmail.com)
+- LinkedIn: [Jihan Azaria Bibi](https://www.linkedin.com/in/jihanazariabibi)  
+- Website: [jihanazariaa.vercel.app](https://jihanazariaa.vercel.app/)  
+- Email: [azariajihan36@gmail.com](mailto:azariajihan36@gmail.com)

@@ -13,13 +13,13 @@
 
   <!-- Social Badges -->
   <p align="center">
-    <a href="https://linkedin.com/in/jihan-azaria-bibi" target="_blank">
+    <a href="https://www.linkedin.com/in/jihanazariabibi" target="_blank">
       <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
     </a>
-    <a href="https://jihanazaria.com" target="_blank">
+    <a href="https://jihanazariaa.vercel.app/" target="_blank">
       <img src="https://img.shields.io/badge/Portfolio-6366F1?style=for-the-badge&logo=react&logoColor=white" alt="Portfolio" />
     </a>
-    <a href="mailto:jihanazaria.work@gmail.com">
+    <a href="mailto:azariajihan36@gmail.com">
       <img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
     </a>
   </p>
@@ -128,7 +128,7 @@ I am a final-year Informatics student at **President University** with a strong 
       <h3>💼 Personal Portfolio & Admin CMS</h3>
       <p>A high-performance modern personal portfolio website featuring a secure custom admin dashboard for dynamic project management, skill analytics, and contact management.</p>
       <p><b>Tech Stack:</b> <code>React</code> <code>Vite</code> <code>Tailwind CSS</code> <code>Firebase</code></p>
-      <a href="https://github.com/jjaehn/jihan-portfolio">📁 View Repository</a>
+      <a href="https://github.com/jjaehn/jie-s-porto">📁 View Repository</a> | <a href="https://jihanazariaa.vercel.app/">🌐 Live Demo</a>
     </td>
   </tr>
   <tr>
@@ -176,14 +176,14 @@ I am a final-year Informatics student at **President University** with a strong 
 
   <br/>
 
-  <a href="https://linkedin.com/in/jihan-azaria-bibi">
+  <a href="https://www.linkedin.com/in/jihanazariabibi" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-Jihan_Azaria_Bibi-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
-  <a href="https://jihanazaria.com">
-    <img src="https://img.shields.io/badge/Portfolio-jihanazaria.com-6366F1?style=for-the-badge&logo=react&logoColor=white" />
+  <a href="https://jihanazariaa.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/Portfolio-jihanazariaa.vercel.app-6366F1?style=for-the-badge&logo=react&logoColor=white" />
   </a>
-  <a href="mailto:jihanazaria.work@gmail.com">
-    <img src="https://img.shields.io/badge/Email-jihanazaria.work@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" />
+  <a href="mailto:azariajihan36@gmail.com">
+    <img src="https://img.shields.io/badge/Email-azariajihan36@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" />
   </a>
 
 </div>
