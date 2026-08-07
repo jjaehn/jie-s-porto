@@ -86,9 +86,8 @@ I am a final-year Informatics student at **President University** with a strong 
       </p>
     </td>
     <td width="50%" valign="top">
-      <h4>⚙️ Tools, Hardware & Platforms</h4>
+      <h4>⚙️ Tools</h4>
       <p>
-        <img src="https://img.shields.io/badge/ESP32_IoT-E7352C?style=flat-square&logo=espressif&logoColor=white" />
         <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white" />
         <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" />
         <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white" />
