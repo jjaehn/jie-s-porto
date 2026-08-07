@@ -68,7 +68,15 @@ export default function SkillIcon({ name, isSelected }) {
           <line x1="12" y1="18" x2="12.01" y2="18" />
         </svg>
       );
-    } else if (cleanName.includes('ui/ux') || cleanName.includes('figma') || cleanName.includes('canva') || cleanName.includes('blender')) {
+    } else if (cleanName.includes('blender')) {
+      return (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+          <line x1="12" y1="22.08" x2="12" y2="12" />
+        </svg>
+      );
+    } else if (cleanName.includes('ui/ux') || cleanName.includes('figma') || cleanName.includes('canva')) {
       return (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
